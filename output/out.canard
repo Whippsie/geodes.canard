@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="ASCII"?>
 <canard:CanardModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:canard="http://iro.umontreal.ca/canard">
+  <links src="inverse_kinematics_node" tgt="joy_mapper_node"/>
+  <links src="inverse_kinematics_node" tgt="wheels_driver_node"/>
+  <links src="forward_kinematics_node" tgt="wheels_driver_node"/>
+  <links src="velocity_to_pose_node" tgt="forward_kinematics_node"/>
   <blocks name="joy_mapper_node"/>
   <blocks name="inverse_kinematics_node"/>
   <blocks name="forward_kinematics_node"/>

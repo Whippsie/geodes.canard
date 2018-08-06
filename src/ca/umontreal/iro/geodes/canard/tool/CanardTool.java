@@ -43,6 +43,8 @@ import canard.diagram.part.Messages;
 public class CanardTool {
 	public static final String INPUTLAUNCH = "input/joystick.launch";
 	public static final String OUTPUTFILE =  "output/out.canard";
+	
+	
 	private static Block makeBlock(String name, CanardFactory factory){
 		//TODO: Not sure of this code, should use array or map to dynamically modify the name of the variables
 		//https://stackoverflow.com/questions/2711067/how-do-i-dynamically-name-objects-in-java
@@ -107,14 +109,14 @@ public class CanardTool {
 		     int fromPos = temp.indexOf(from);
 		     int toPos = temp.indexOf(to);
 		     
-		     from = temp.substring(fromPos+6,toPos-3);
-		     System.out.println(from);
+		     from = temp.substring(fromPos+6,toPos-2);
+		     System.out.println("from : "+from);
 		     
 		     String[] nodeTopic = from.split("/");
 		     Block bfrom = getBlockFromName(nodeTopic[0]);
 		     
-		     to = temp.substring(toPos+4,endInclude-match.start()-3);
-		     System.out.println(to);
+		     to = temp.substring(toPos+4,endInclude-match.start()-4);
+		     System.out.println(" to : " + to);
 		     
 		     nodeTopic = to.split("/");
 		     Block bto = getBlockFromName(nodeTopic[0]);
