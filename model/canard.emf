@@ -1,0 +1,50 @@
+@gmf
+@namespace(uri="http://iro.umontreal.ca/canard", prefix="canard")
+package canard;
+@gmf.diagram
+class CanardModel {
+  val Rel[*] links;
+  val Block[*] blocks;
+  val Configuration[*] configurations;
+  val AbstractFeature[*] features;
+  val Relation[*] relations;
+}
+@gmf.node(label="name")
+class Flag extends AbstractFeature {
+  attr FlagValues[1] value = "NAN";
+}
+class Relation {
+  attr String nameParent;
+}
+@gmf.node(label="name")
+class AbstractFeature {
+  id attr String[1] name;
+}
+@gmf.node(label="name")
+class Block {
+  id attr String[1] name;
+  val Attribute[*] attributes;
+}
+@gmf.link(source="src", target="tgt", style="dot", width="2")
+class Rel {
+  ref Block[1] src;
+  ref Block[1] tgt;
+  id attr String[1] name;
+}
+class Attribute {
+  id attr String[1] name;
+  !unique !ordered attr String value;
+}
+class Configuration {
+  ref Flag[*] flags;
+}
+enum FlagValues {
+  TRUE = 1;
+  FALSE = 0;
+  NAN = 2;
+}
+enum FeatureRelationType {
+  CHILD = 0;
+  REQUIRES = 1;
+  PROHIBITS = 2;
+}
