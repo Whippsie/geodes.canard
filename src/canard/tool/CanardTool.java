@@ -1,4 +1,4 @@
-package ca.umontreal.iro.geodes.canard.tool;
+package canard.tool;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,33 +17,21 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMIResource;
+
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.validation.internal.util.Log;
-import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
-import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
-import org.eclipse.gmf.runtime.emf.core.resources.GMFResource;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.MeasurementUnit;
-import org.eclipse.gmf.runtime.notation.NotationFactory;
+
 import org.eclipse.osgi.util.NLS;
 
-import ca.umontreal.iro.geodes.canard.Block;
-import ca.umontreal.iro.geodes.canard.CanardFactory;
-import ca.umontreal.iro.geodes.canard.CanardModel;
-import ca.umontreal.iro.geodes.canard.Rel;
-import canard.diagram.edit.parts.CanardModelEditPart;
-import canard.diagram.part.CanardDiagramEditorPlugin;
-import canard.diagram.part.CanardDiagramEditorUtil;
-import canard.diagram.part.CanardNewDiagramFileWizard;
-import canard.diagram.part.Messages;
+import canard.Block;
+import canard.CanardFactory;
+import canard.CanardModel;
+import canard.Rel;
+import canard.Topic;
 
 public class CanardTool {
 	public static final String INPUTLAUNCH = "input/joystick.launch";
 	public static final String OUTPUTFILE =  "output/out.canard";
-	
+	public static int uniqueID = 0;
 	
 	private static Block makeBlock(String name, CanardFactory factory){
 		//TODO: Not sure of this code, should use array or map to dynamically modify the name of the variables
@@ -89,6 +77,10 @@ public class CanardTool {
 		return nodes;
 		
 	}
+	private static void incrementID(){
+		uniqueID+=1;
+	}
+	
 	private static void relationsFromLaunch(CanardFactory factory){
 		
 		String text = readFile();
@@ -114,18 +106,27 @@ public class CanardTool {
 		     
 		     String[] nodeTopic = from.split("/");
 		     Block bfrom = getBlockFromName(nodeTopic[0]);
+		     Topic tfrom = factory.createTopic();
+		     tfrom.setName(nodeTopic[1]);
+		     incrementID();
+		     tfrom.setUniqueID(uniqueID);
+		     bfrom.getTopics().add(tfrom);
 		     
-		     to = temp.substring(toPos+4,endInclude-match.start()-4);
+		     int endPos = temp.lastIndexOf("\"");
+		     to = temp.substring(toPos+4,endPos);
 		     System.out.println(" to : " + to);
 		     
 		     nodeTopic = to.split("/");
 		     Block bto = getBlockFromName(nodeTopic[0]);
-		     
-		     //TODO: Ajouter un nom a la relation pour savoir quel topic de chaque cote
-		     
+		     Topic tto = factory.createTopic();
+		     tto.setName(nodeTopic[1]);
+		     incrementID();
+		     tto.setUniqueID(uniqueID);
+		     bto.getTopics().add(tto);
+
 		     Rel r1 = factory.createRel();
-		     r1.setSrc(bfrom);
-		     r1.setTgt(bto);
+		     r1.setSrc(tfrom);
+		     r1.setTgt(tto);
 		     
 		     model.getLinks().add(r1);
 		}
@@ -158,7 +159,7 @@ public class CanardTool {
 		relationsFromLaunch(factory);
 		
 		
-		XmiExporter.export(model, OUTPUTFILE);
+		XMIExporter.export(model, OUTPUTFILE);
 
 
 		//URI diagUri = URI.createFileURI("output/out.canard");
@@ -187,6 +188,7 @@ public class CanardTool {
 */
 		// Create the diagram
 		//
+		/*
 		Diagram diagram = ViewService.createDiagram(rootObject,
 				CanardModelEditPart.MODEL_ID,
 				CanardDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
@@ -195,25 +197,18 @@ public class CanardTool {
 		  diagram.setName(fileURI.lastSegment());
 		  diagram.setElement(rootObject);
 		}
-
+*/
 
 	}
 }
 	/*
 	public static void main(String[] args) {
-
 		CanardFactory factory = CanardFactory.eINSTANCE;
-
 		CanardModel model = factory.createCanardModel();
-
 		Block b1 = factory.createBlock();
 		b1.setName("b1");
-
 		model.getBlocks().add(b1);
-
 		XmiExporter.export(model, "output/out.canard");
-
-
 		URI diagUri = URI.createFileURI("output/out.canard");
 		/*
 		Diagram diagram = ViewService.createDiagram(model,
@@ -221,27 +216,22 @@ public class CanardTool {
 				CanardDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource diagramResource = resourceSet.createResource(URI.createFileURI("output/out.canard_diagram"));
-
 		diagramResource.getContents().add(diagram);
         try {
             // Create a resource set
             //
             ResourceSet resourceSet = new ResourceSetImpl();
-
             // Get the URI of the model file.
             //
-
             // Create a resource for this file.
             //
             Resource resource = resourceSet.createResource(diagUri);
-
             // Add the initial model object to the contents.
             //
             EObject rootObject = model;
             if (rootObject != null) {
               resource.getContents().add(rootObject);
             }
-
             // Create the diagram
             //
             Diagram diagram = ViewService.createDiagram(rootObject,
@@ -258,7 +248,6 @@ public class CanardTool {
 		}
         /*
 		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
-
 		EObject diagramRoot = null;
 		try {
 			ResourceSet resourceSet = editingDomain.getResourceSet();
@@ -280,7 +269,6 @@ public class CanardTool {
 	    diagram.getStyles().add(NotationFactory.eINSTANCE.createDiagramStyle());
 	    diagram.setElement(model); //your EObject that should be referenced to this diagram (probably an ecore file)
 	    diagram.setType("Ecore");
-
 		//ResourceSet resourceSet = new ResourceSetImpl();
 	    Resource diagramResource = ResourceSet.createResource(diagUri);
 	    diagramResource.getContents().add(d);
@@ -293,22 +281,15 @@ public class CanardTool {
 			options.put(XMIResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
 			resource.save(options);
 			Diagram diagram = ViewService.createDiagram(model,"Canard", null);
-
 			diagram.setElement(model);
 			diagram.setName("canard");
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource diagramResource = resourceSet.createResource(URI.createFileURI("output/out.canard_diagram"));
-
 			diagramResource.getContents().add(diagram);
 			diagramResource.save(null);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
-
 	}
-
-
 }	*/

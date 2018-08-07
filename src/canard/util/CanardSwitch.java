@@ -72,6 +72,12 @@ public class CanardSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case CanardPackage.TOPIC: {
+				Topic topic = (Topic)theEObject;
+				T result = caseTopic(topic);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case CanardPackage.FLAG: {
 				Flag flag = (Flag)theEObject;
 				T result = caseFlag(flag);
@@ -131,6 +137,21 @@ public class CanardSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseCanardModel(CanardModel object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Topic</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Topic</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTopic(Topic object) {
 		return null;
 	}
 

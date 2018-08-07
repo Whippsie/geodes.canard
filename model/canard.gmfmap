@@ -44,6 +44,26 @@
           href="canard.gmftool#//@palette/@tools.0/@tools.1"/>
       <diagramNode
           href="canard.gmfgraph#Block"/>
+      <children>
+        <containmentFeature
+            href="canard.ecore#//Block/topics"/>
+        <ownedChild>
+          <domainMetaElement
+              href="canard.ecore#//Topic"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="canard.gmfgraph#TopicLabel"/>
+            <features
+                href="canard.ecore#//Topic/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="canard.gmftool#//@palette/@tools.0/@tools.3"/>
+          <diagramNode
+              href="canard.gmfgraph#Topic"/>
+        </ownedChild>
+      </children>
     </ownedChild>
   </nodes>
   <nodes>
@@ -69,6 +89,13 @@
   <links>
     <domainMetaElement
         href="canard.ecore#//Rel"/>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="canard.gmfgraph#RelLabel"/>
+      <features
+          href="canard.ecore#//Rel/name"/>
+    </labelMappings>
     <containmentFeature
         href="canard.ecore#//CanardModel/links"/>
     <tool

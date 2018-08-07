@@ -1,4 +1,4 @@
-package ca.umontreal.iro.geodes.canard.tool;
+package canard.tool;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,11 +10,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 
-import ca.umontreal.iro.geodes.canard.CanardModel;
+public class XMIExporter {
 
-public class XmiExporter {
-
-	public static void export(CanardModel d, String path) {
+	public static void export(canard.CanardModel d, String path) {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 

@@ -58,6 +58,7 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case CanardPackage.CANARD_MODEL: return createCanardModel();
+			case CanardPackage.TOPIC: return createTopic();
 			case CanardPackage.FLAG: return createFlag();
 			case CanardPackage.RELATION: return createRelation();
 			case CanardPackage.ABSTRACT_FEATURE: return createAbstractFeature();
@@ -112,6 +113,16 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 	public CanardModel createCanardModel() {
 		CanardModelImpl canardModel = new CanardModelImpl();
 		return canardModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Topic createTopic() {
+		TopicImpl topic = new TopicImpl();
+		return topic;
 	}
 
 	/**

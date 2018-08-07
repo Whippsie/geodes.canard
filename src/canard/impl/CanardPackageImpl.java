@@ -14,6 +14,7 @@ import canard.Flag;
 import canard.FlagValues;
 import canard.Rel;
 import canard.Relation;
+import canard.Topic;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -36,6 +37,13 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * @generated
 	 */
 	private EClass canardModelEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass topicEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -220,6 +228,33 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getTopic() {
+		return topicEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTopic_Name() {
+		return (EAttribute)topicEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTopic_UniqueID() {
+		return (EAttribute)topicEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFlag() {
 		return flagEClass;
 	}
@@ -294,6 +329,15 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 */
 	public EReference getBlock_Attributes() {
 		return (EReference)blockEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getBlock_Topics() {
+		return (EReference)blockEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -430,6 +474,10 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		createEReference(canardModelEClass, CANARD_MODEL__FEATURES);
 		createEReference(canardModelEClass, CANARD_MODEL__RELATIONS);
 
+		topicEClass = createEClass(TOPIC);
+		createEAttribute(topicEClass, TOPIC__NAME);
+		createEAttribute(topicEClass, TOPIC__UNIQUE_ID);
+
 		flagEClass = createEClass(FLAG);
 		createEAttribute(flagEClass, FLAG__VALUE);
 
@@ -442,6 +490,7 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		blockEClass = createEClass(BLOCK);
 		createEAttribute(blockEClass, BLOCK__NAME);
 		createEReference(blockEClass, BLOCK__ATTRIBUTES);
+		createEReference(blockEClass, BLOCK__TOPICS);
 
 		relEClass = createEClass(REL);
 		createEReference(relEClass, REL__SRC);
@@ -498,6 +547,10 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		initEReference(getCanardModel_Features(), this.getAbstractFeature(), null, "features", null, 0, -1, CanardModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCanardModel_Relations(), this.getRelation(), null, "relations", null, 0, -1, CanardModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(topicEClass, Topic.class, "Topic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTopic_Name(), ecorePackage.getEString(), "name", null, 1, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTopic_UniqueID(), ecorePackage.getEInt(), "uniqueID", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(flagEClass, Flag.class, "Flag", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFlag_Value(), this.getFlagValues(), "value", "NAN", 1, 1, Flag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -510,10 +563,11 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBlock_Name(), ecorePackage.getEString(), "name", null, 1, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getBlock_Attributes(), this.getAttribute(), null, "attributes", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getBlock_Topics(), this.getTopic(), null, "topics", null, 0, -1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(relEClass, Rel.class, "Rel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getRel_Src(), this.getBlock(), null, "src", null, 1, 1, Rel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getRel_Tgt(), this.getBlock(), null, "tgt", null, 1, 1, Rel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRel_Src(), this.getTopic(), null, "src", null, 1, 1, Rel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRel_Tgt(), this.getTopic(), null, "tgt", null, 1, 1, Rel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getRel_Name(), ecorePackage.getEString(), "name", null, 1, 1, Rel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeEClass, Attribute.class, "Attribute", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -544,8 +598,10 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		createGmf_1Annotations();
 		// gmf.node
 		createGmf_2Annotations();
-		// gmf.link
+		// gmf.affixed
 		createGmf_3Annotations();
+		// gmf.link
+		createGmf_4Annotations();
 	}
 
 	/**
@@ -587,6 +643,14 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	protected void createGmf_2Annotations() {
 		String source = "gmf.node";	
 		addAnnotation
+		  (topicEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name",
+			 "figure", "rounded",
+			 "color", "250,229,150"
+		   });	
+		addAnnotation
 		  (flagEClass, 
 		   source, 
 		   new String[] {
@@ -602,7 +666,26 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		  (blockEClass, 
 		   source, 
 		   new String[] {
-			 "label", "name"
+			 "label", "name",
+			 "figure", "rectangle",
+			 "border.color", "0,0,0",
+			 "color", "63,176,172",
+			 "label.color", "255,255,255"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.affixed</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_3Annotations() {
+		String source = "gmf.affixed";	
+		addAnnotation
+		  (getBlock_Topics(), 
+		   source, 
+		   new String[] {
 		   });
 	}
 
@@ -612,15 +695,16 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createGmf_3Annotations() {
+	protected void createGmf_4Annotations() {
 		String source = "gmf.link";	
 		addAnnotation
 		  (relEClass, 
 		   source, 
 		   new String[] {
+			 "label", "name",
 			 "source", "src",
 			 "target", "tgt",
-			 "style", "dot",
+			 "target.decoration", "arrow",
 			 "width", "2"
 		   });
 	}

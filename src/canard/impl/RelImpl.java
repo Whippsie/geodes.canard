@@ -2,9 +2,9 @@
  */
 package canard.impl;
 
-import canard.Block;
 import canard.CanardPackage;
 import canard.Rel;
+import canard.Topic;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -38,7 +38,7 @@ public class RelImpl extends EObjectImpl implements Rel {
 	 * @generated
 	 * @ordered
 	 */
-	protected Block src;
+	protected Topic src;
 
 	/**
 	 * The cached value of the '{@link #getTgt() <em>Tgt</em>}' reference.
@@ -48,7 +48,7 @@ public class RelImpl extends EObjectImpl implements Rel {
 	 * @generated
 	 * @ordered
 	 */
-	protected Block tgt;
+	protected Topic tgt;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -94,10 +94,10 @@ public class RelImpl extends EObjectImpl implements Rel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Block getSrc() {
+	public Topic getSrc() {
 		if (src != null && src.eIsProxy()) {
 			InternalEObject oldSrc = (InternalEObject)src;
-			src = (Block)eResolveProxy(oldSrc);
+			src = (Topic)eResolveProxy(oldSrc);
 			if (src != oldSrc) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CanardPackage.REL__SRC, oldSrc, src));
@@ -111,7 +111,7 @@ public class RelImpl extends EObjectImpl implements Rel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Block basicGetSrc() {
+	public Topic basicGetSrc() {
 		return src;
 	}
 
@@ -120,8 +120,8 @@ public class RelImpl extends EObjectImpl implements Rel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSrc(Block newSrc) {
-		Block oldSrc = src;
+	public void setSrc(Topic newSrc) {
+		Topic oldSrc = src;
 		src = newSrc;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CanardPackage.REL__SRC, oldSrc, src));
@@ -132,10 +132,10 @@ public class RelImpl extends EObjectImpl implements Rel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Block getTgt() {
+	public Topic getTgt() {
 		if (tgt != null && tgt.eIsProxy()) {
 			InternalEObject oldTgt = (InternalEObject)tgt;
-			tgt = (Block)eResolveProxy(oldTgt);
+			tgt = (Topic)eResolveProxy(oldTgt);
 			if (tgt != oldTgt) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, CanardPackage.REL__TGT, oldTgt, tgt));
@@ -149,7 +149,7 @@ public class RelImpl extends EObjectImpl implements Rel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Block basicGetTgt() {
+	public Topic basicGetTgt() {
 		return tgt;
 	}
 
@@ -158,8 +158,8 @@ public class RelImpl extends EObjectImpl implements Rel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTgt(Block newTgt) {
-		Block oldTgt = tgt;
+	public void setTgt(Topic newTgt) {
+		Topic oldTgt = tgt;
 		tgt = newTgt;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, CanardPackage.REL__TGT, oldTgt, tgt));
@@ -215,10 +215,10 @@ public class RelImpl extends EObjectImpl implements Rel {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case CanardPackage.REL__SRC:
-				setSrc((Block)newValue);
+				setSrc((Topic)newValue);
 				return;
 			case CanardPackage.REL__TGT:
-				setTgt((Block)newValue);
+				setTgt((Topic)newValue);
 				return;
 			case CanardPackage.REL__NAME:
 				setName((String)newValue);
@@ -236,10 +236,10 @@ public class RelImpl extends EObjectImpl implements Rel {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case CanardPackage.REL__SRC:
-				setSrc((Block)null);
+				setSrc((Topic)null);
 				return;
 			case CanardPackage.REL__TGT:
-				setTgt((Block)null);
+				setTgt((Topic)null);
 				return;
 			case CanardPackage.REL__NAME:
 				setName(NAME_EDEFAULT);

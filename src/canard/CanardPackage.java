@@ -121,6 +121,43 @@ public interface CanardPackage extends EPackage {
 	int CANARD_MODEL_FEATURE_COUNT = 5;
 
 	/**
+	 * The meta object id for the '{@link canard.impl.TopicImpl <em>Topic</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see canard.impl.TopicImpl
+	 * @see canard.impl.CanardPackageImpl#getTopic()
+	 * @generated
+	 */
+	int TOPIC = 1;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Unique ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC__UNIQUE_ID = 1;
+
+	/**
+	 * The number of structural features of the '<em>Topic</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TOPIC_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link canard.impl.AbstractFeatureImpl <em>Abstract Feature</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -128,7 +165,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getAbstractFeature()
 	 * @generated
 	 */
-	int ABSTRACT_FEATURE = 3;
+	int ABSTRACT_FEATURE = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -156,7 +193,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getFlag()
 	 * @generated
 	 */
-	int FLAG = 1;
+	int FLAG = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -193,7 +230,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getRelation()
 	 * @generated
 	 */
-	int RELATION = 2;
+	int RELATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Name Parent</b></em>' attribute.
@@ -221,7 +258,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getBlock()
 	 * @generated
 	 */
-	int BLOCK = 4;
+	int BLOCK = 5;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -242,13 +279,22 @@ public interface CanardPackage extends EPackage {
 	int BLOCK__ATTRIBUTES = 1;
 
 	/**
+	 * The feature id for the '<em><b>Topics</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BLOCK__TOPICS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Block</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int BLOCK_FEATURE_COUNT = 2;
+	int BLOCK_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link canard.impl.RelImpl <em>Rel</em>}' class.
@@ -258,7 +304,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getRel()
 	 * @generated
 	 */
-	int REL = 5;
+	int REL = 6;
 
 	/**
 	 * The feature id for the '<em><b>Src</b></em>' reference.
@@ -304,7 +350,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getAttribute()
 	 * @generated
 	 */
-	int ATTRIBUTE = 6;
+	int ATTRIBUTE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -341,7 +387,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getConfiguration()
 	 * @generated
 	 */
-	int CONFIGURATION = 7;
+	int CONFIGURATION = 8;
 
 	/**
 	 * The feature id for the '<em><b>Flags</b></em>' reference list.
@@ -369,7 +415,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getFlagValues()
 	 * @generated
 	 */
-	int FLAG_VALUES = 8;
+	int FLAG_VALUES = 9;
 
 	/**
 	 * The meta object id for the '{@link canard.FeatureRelationType <em>Feature Relation Type</em>}' enum.
@@ -379,7 +425,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getFeatureRelationType()
 	 * @generated
 	 */
-	int FEATURE_RELATION_TYPE = 9;
+	int FEATURE_RELATION_TYPE = 10;
 
 
 	/**
@@ -446,6 +492,38 @@ public interface CanardPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getCanardModel_Relations();
+
+	/**
+	 * Returns the meta object for class '{@link canard.Topic <em>Topic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Topic</em>'.
+	 * @see canard.Topic
+	 * @generated
+	 */
+	EClass getTopic();
+
+	/**
+	 * Returns the meta object for the attribute '{@link canard.Topic#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see canard.Topic#getName()
+	 * @see #getTopic()
+	 * @generated
+	 */
+	EAttribute getTopic_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link canard.Topic#getUniqueID <em>Unique ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unique ID</em>'.
+	 * @see canard.Topic#getUniqueID()
+	 * @see #getTopic()
+	 * @generated
+	 */
+	EAttribute getTopic_UniqueID();
 
 	/**
 	 * Returns the meta object for class '{@link canard.Flag <em>Flag</em>}'.
@@ -541,6 +619,17 @@ public interface CanardPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getBlock_Attributes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link canard.Block#getTopics <em>Topics</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Topics</em>'.
+	 * @see canard.Block#getTopics()
+	 * @see #getBlock()
+	 * @generated
+	 */
+	EReference getBlock_Topics();
 
 	/**
 	 * Returns the meta object for class '{@link canard.Rel <em>Rel</em>}'.
@@ -731,6 +820,32 @@ public interface CanardPackage extends EPackage {
 		EReference CANARD_MODEL__RELATIONS = eINSTANCE.getCanardModel_Relations();
 
 		/**
+		 * The meta object literal for the '{@link canard.impl.TopicImpl <em>Topic</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see canard.impl.TopicImpl
+		 * @see canard.impl.CanardPackageImpl#getTopic()
+		 * @generated
+		 */
+		EClass TOPIC = eINSTANCE.getTopic();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TOPIC__NAME = eINSTANCE.getTopic_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TOPIC__UNIQUE_ID = eINSTANCE.getTopic_UniqueID();
+
+		/**
 		 * The meta object literal for the '{@link canard.impl.FlagImpl <em>Flag</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -809,6 +924,14 @@ public interface CanardPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BLOCK__ATTRIBUTES = eINSTANCE.getBlock_Attributes();
+
+		/**
+		 * The meta object literal for the '<em><b>Topics</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference BLOCK__TOPICS = eINSTANCE.getBlock_Topics();
 
 		/**
 		 * The meta object literal for the '{@link canard.impl.RelImpl <em>Rel</em>}' class.

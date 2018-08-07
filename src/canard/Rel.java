@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see canard.CanardPackage#getRel()
- * @model annotation="gmf.link source='src' target='tgt' style='dot' width='2'"
+ * @model annotation="gmf.link label='name' source='src' target='tgt' target.decoration='arrow' width='2'"
  * @generated
  */
 public interface Rel extends EObject {
@@ -32,12 +32,12 @@ public interface Rel extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Src</em>' reference.
-	 * @see #setSrc(Block)
+	 * @see #setSrc(Topic)
 	 * @see canard.CanardPackage#getRel_Src()
 	 * @model required="true"
 	 * @generated
 	 */
-	Block getSrc();
+	Topic getSrc();
 
 	/**
 	 * Sets the value of the '{@link canard.Rel#getSrc <em>Src</em>}' reference.
@@ -47,7 +47,7 @@ public interface Rel extends EObject {
 	 * @see #getSrc()
 	 * @generated
 	 */
-	void setSrc(Block value);
+	void setSrc(Topic value);
 
 	/**
 	 * Returns the value of the '<em><b>Tgt</b></em>' reference.
@@ -58,12 +58,12 @@ public interface Rel extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Tgt</em>' reference.
-	 * @see #setTgt(Block)
+	 * @see #setTgt(Topic)
 	 * @see canard.CanardPackage#getRel_Tgt()
 	 * @model required="true"
 	 * @generated
 	 */
-	Block getTgt();
+	Topic getTgt();
 
 	/**
 	 * Sets the value of the '{@link canard.Rel#getTgt <em>Tgt</em>}' reference.
@@ -73,7 +73,7 @@ public interface Rel extends EObject {
 	 * @see #getTgt()
 	 * @generated
 	 */
-	void setTgt(Block value);
+	void setTgt(Topic value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

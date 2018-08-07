@@ -9,6 +9,14 @@ class CanardModel {
   val AbstractFeature[*] features;
   val Relation[*] relations;
 }
+
+
+@gmf.node(label="name", figure="rounded", color="250,229,150")
+class Topic {
+	attr String[1] name;
+	id attr int uniqueID;
+}
+
 @gmf.node(label="name")
 class Flag extends AbstractFeature {
   attr FlagValues[1] value = "NAN";
@@ -20,15 +28,17 @@ class Relation {
 class AbstractFeature {
   id attr String[1] name;
 }
-@gmf.node(label="name")
+@gmf.node(label="name", figure="rectangle", border.color="0,0,0", color="63,176,172", label.color="255,255,255")
 class Block {
   id attr String[1] name;
   val Attribute[*] attributes;
+  @gmf.affixed
+  val Topic[*] topics;
 }
-@gmf.link(source="src", target="tgt", style="dot", width="2")
+@gmf.link(label="name", source="src", target="tgt", target.decoration="arrow", width="2")
 class Rel {
-  ref Block[1] src;
-  ref Block[1] tgt;
+  ref Topic[1] src;
+  ref Topic[1] tgt;
   id attr String[1] name;
 }
 class Attribute {

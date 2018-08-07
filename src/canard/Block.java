@@ -17,10 +17,11 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link canard.Block#getName <em>Name</em>}</li>
  *   <li>{@link canard.Block#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link canard.Block#getTopics <em>Topics</em>}</li>
  * </ul>
  *
  * @see canard.CanardPackage#getBlock()
- * @model annotation="gmf.node label='name'"
+ * @model annotation="gmf.node label='name' figure='rectangle' border.color='0,0,0' color='63,176,172' label.color='255,255,255'"
  * @generated
  */
 public interface Block extends EObject {
@@ -65,5 +66,21 @@ public interface Block extends EObject {
 	 * @generated
 	 */
 	EList<Attribute> getAttributes();
+
+	/**
+	 * Returns the value of the '<em><b>Topics</b></em>' containment reference list.
+	 * The list contents are of type {@link canard.Topic}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Topics</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Topics</em>' containment reference list.
+	 * @see canard.CanardPackage#getBlock_Topics()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Topic> getTopics();
 
 } // Block

@@ -1,32 +1,32 @@
 /**
  */
-package ca.umontreal.iro.geodes.canard.impl;
+package canard.impl;
 
-import ca.umontreal.iro.geodes.canard.Attribute;
-import ca.umontreal.iro.geodes.canard.CanardPackage;
+import canard.CanardPackage;
+import canard.Topic;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Attribute</b></em>'.
+ * An implementation of the model object '<em><b>Topic</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link ca.umontreal.iro.geodes.canard.impl.AttributeImpl#getName <em>Name</em>}</li>
- *   <li>{@link ca.umontreal.iro.geodes.canard.impl.AttributeImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link canard.impl.TopicImpl#getName <em>Name</em>}</li>
+ *   <li>{@link canard.impl.TopicImpl#getUniqueID <em>Unique ID</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AttributeImpl extends MinimalEObjectImpl.Container implements Attribute {
+public class TopicImpl extends EObjectImpl implements Topic {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -48,31 +48,31 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * The default value of the '{@link #getUniqueID() <em>Unique ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getUniqueID()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String VALUE_EDEFAULT = null;
+	protected static final int UNIQUE_ID_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * The cached value of the '{@link #getUniqueID() <em>Unique ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getUniqueID()
 	 * @generated
 	 * @ordered
 	 */
-	protected String value = VALUE_EDEFAULT;
+	protected int uniqueID = UNIQUE_ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AttributeImpl() {
+	protected TopicImpl() {
 		super();
 	}
 
@@ -83,7 +83,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return CanardPackage.Literals.ATTRIBUTE;
+		return CanardPackage.Literals.TOPIC;
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CanardPackage.ATTRIBUTE__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, CanardPackage.TOPIC__NAME, oldName, name));
 	}
 
 	/**
@@ -112,8 +112,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getValue() {
-		return value;
+	public int getUniqueID() {
+		return uniqueID;
 	}
 
 	/**
@@ -121,11 +121,11 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(String newValue) {
-		String oldValue = value;
-		value = newValue;
+	public void setUniqueID(int newUniqueID) {
+		int oldUniqueID = uniqueID;
+		uniqueID = newUniqueID;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, CanardPackage.ATTRIBUTE__VALUE, oldValue, value));
+			eNotify(new ENotificationImpl(this, Notification.SET, CanardPackage.TOPIC__UNIQUE_ID, oldUniqueID, uniqueID));
 	}
 
 	/**
@@ -136,10 +136,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case CanardPackage.ATTRIBUTE__NAME:
+			case CanardPackage.TOPIC__NAME:
 				return getName();
-			case CanardPackage.ATTRIBUTE__VALUE:
-				return getValue();
+			case CanardPackage.TOPIC__UNIQUE_ID:
+				return getUniqueID();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -152,11 +152,11 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case CanardPackage.ATTRIBUTE__NAME:
+			case CanardPackage.TOPIC__NAME:
 				setName((String)newValue);
 				return;
-			case CanardPackage.ATTRIBUTE__VALUE:
-				setValue((String)newValue);
+			case CanardPackage.TOPIC__UNIQUE_ID:
+				setUniqueID((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -170,11 +170,11 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case CanardPackage.ATTRIBUTE__NAME:
+			case CanardPackage.TOPIC__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case CanardPackage.ATTRIBUTE__VALUE:
-				setValue(VALUE_EDEFAULT);
+			case CanardPackage.TOPIC__UNIQUE_ID:
+				setUniqueID(UNIQUE_ID_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -188,10 +188,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case CanardPackage.ATTRIBUTE__NAME:
+			case CanardPackage.TOPIC__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case CanardPackage.ATTRIBUTE__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+			case CanardPackage.TOPIC__UNIQUE_ID:
+				return uniqueID != UNIQUE_ID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -208,10 +208,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: ");
 		result.append(name);
-		result.append(", value: ");
-		result.append(value);
+		result.append(", uniqueID: ");
+		result.append(uniqueID);
 		result.append(')');
 		return result.toString();
 	}
 
-} //AttributeImpl
+} //TopicImpl

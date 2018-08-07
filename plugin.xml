@@ -10,8 +10,7 @@
       <!-- @generated canard -->
       <package
             uri="http://iro.umontreal.ca/canard"
-            class="canard.CanardPackage"
-            genModel="model/canard.genmodel"/>
+            class="canard.CanardPackage"/>
    </extension>
 
 </plugin>

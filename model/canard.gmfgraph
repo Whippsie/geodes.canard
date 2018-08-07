@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="ASCII"?>
 <gmfgraph:Canvas xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:gmfgraph="http://www.eclipse.org/gmf/2006/GraphicalDefinition" name="canard">
   <figures name="Default">
+    <figures xsi:type="gmfgraph:PolylineDecoration" name="RelFigureTargetDecoration"/>
+    <descriptors name="TopicFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="TopicFigure">
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="250" green="229" blue="150"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="TopicLabelFigure" text="Topic"/>
+      </actualFigure>
+      <accessors accessor="getFigureTopicLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
     <descriptors name="FlagFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="FlagFigure">
         <border xsi:type="gmfgraph:MarginBorder">
@@ -8,7 +19,7 @@
         </border>
         <children xsi:type="gmfgraph:Label" name="FlagLabelFigure" text="Flag"/>
       </actualFigure>
-      <accessors accessor="getFigureFlagLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
+      <accessors accessor="getFigureFlagLabelFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="AbstractFeatureFigure">
       <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="AbstractFeatureFigure">
@@ -17,26 +28,34 @@
         </border>
         <children xsi:type="gmfgraph:Label" name="AbstractFeatureLabelFigure" text="AbstractFeature"/>
       </actualFigure>
-      <accessors accessor="getFigureAbstractFeatureLabelFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors accessor="getFigureAbstractFeatureLabelFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="BlockFigure">
-      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="BlockFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="BlockFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="63" green="176" blue="172"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
         <children xsi:type="gmfgraph:Label" name="BlockLabelFigure" text="Block"/>
       </actualFigure>
-      <accessors accessor="getFigureBlockLabelFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
+      <accessors accessor="getFigureBlockLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="RelFigure">
-      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RelFigure" lineWidth="2" lineKind="LINE_DOT"/>
+      <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RelFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.0"/>
+    </descriptors>
+    <descriptors name="RelLabelFigure">
+      <actualFigure xsi:type="gmfgraph:Label" name="RelLabelLabel" text="Rel"/>
     </descriptors>
   </figures>
+  <nodes name="Topic" figure="TopicFigure" affixedParentSide="NORTH"/>
   <nodes name="Flag" figure="FlagFigure"/>
   <nodes name="AbstractFeature" figure="AbstractFeatureFigure"/>
   <nodes name="Block" figure="BlockFigure"/>
   <connections name="Rel" figure="RelFigure"/>
-  <labels name="FlagLabel" figure="FlagFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
-  <labels name="AbstractFeatureLabel" figure="AbstractFeatureFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
-  <labels name="BlockLabel" figure="BlockFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="TopicLabel" figure="TopicFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
+  <labels name="FlagLabel" figure="FlagFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
+  <labels name="AbstractFeatureLabel" figure="AbstractFeatureFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="BlockLabel" figure="BlockFigure" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <labels name="RelLabel" figure="RelLabelFigure" elementIcon="false"/>
 </gmfgraph:Canvas>
