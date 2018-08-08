@@ -29,9 +29,11 @@ import canard.Rel;
 import canard.Topic;
 
 public class CanardTool {
-	public static final String INPUTLAUNCH = "input/joystick.launch";
-	public static final String OUTPUTFILE =  "output/out.canard";
+	public static final String INPUTLAUNCH = "input/master.launch";
+	public static final String OUTPUTFILE =  "output/outmaster.canard";
 	public static int uniqueID = 0;
+	private static CanardModel model;
+	private static CanardFactory factory;
 	
 	private static Block makeBlock(String name, CanardFactory factory){
 		//TODO: Not sure of this code, should use array or map to dynamically modify the name of the variables
@@ -81,12 +83,42 @@ public class CanardTool {
 		uniqueID+=1;
 	}
 	
-	private static void relationsFromLaunch(CanardFactory factory){
+	private static Topic makeRel(String from){
+		String[] nodeTopic = from.split("/");
+	     
+	     //TODO : decide what to do with the $
+	     for (int i =0; i<nodeTopic.length;i++){
+	    	 if (nodeTopic[i].contains("$")){
+	    		 return null;
+	    	 }
+	     }
+	    Block bfrom = getBlockFromName(nodeTopic[0]);
+	     
+	     //Pour gerer le cas ou un noeud pas include, mais remap
+	     if (bfrom == null && nodeTopic[0].contains("node")){
+	    	 bfrom = makeBlock(nodeTopic[0],factory);
+	     }
+	     
+	     Topic tfrom = null;
+	     //TODO : Else, On a un remap sans node, quoi faire?
+	     if (nodeTopic.length != 1){
+		     tfrom = factory.createTopic();
+		     tfrom.setName(nodeTopic[1]);
+		     incrementID();
+		     tfrom.setUniqueID(uniqueID);
+		     bfrom.getTopics().add(tfrom);
+	     }
+	     
+	     return tfrom;
+
+	     
+	}
+	private static void relationsFromLaunch(){
 		
 		String text = readFile();
 		
 		//Doublon, to refactor
-		String wordToFind = "remap";
+		String wordToFind = "<remap";
 		Pattern word = Pattern.compile(wordToFind);
 		Matcher match = word.matcher(text);
 		
@@ -102,33 +134,24 @@ public class CanardTool {
 		     int toPos = temp.indexOf(to);
 		     
 		     from = temp.substring(fromPos+6,toPos-2);
-		     System.out.println("from : "+from);
-		     
-		     String[] nodeTopic = from.split("/");
-		     Block bfrom = getBlockFromName(nodeTopic[0]);
-		     Topic tfrom = factory.createTopic();
-		     tfrom.setName(nodeTopic[1]);
-		     incrementID();
-		     tfrom.setUniqueID(uniqueID);
-		     bfrom.getTopics().add(tfrom);
+
+		     Topic tfrom = makeRel(from);
 		     
 		     int endPos = temp.lastIndexOf("\"");
 		     to = temp.substring(toPos+4,endPos);
-		     System.out.println(" to : " + to);
-		     
-		     nodeTopic = to.split("/");
-		     Block bto = getBlockFromName(nodeTopic[0]);
-		     Topic tto = factory.createTopic();
-		     tto.setName(nodeTopic[1]);
-		     incrementID();
-		     tto.setUniqueID(uniqueID);
-		     bto.getTopics().add(tto);
 
-		     Rel r1 = factory.createRel();
-		     r1.setSrc(tfrom);
-		     r1.setTgt(tto);
-		     
-		     model.getLinks().add(r1);
+		     Topic tto = makeRel(to);
+
+		     if (tfrom != null && tto != null){
+			     System.out.println("from : "+from);
+			     System.out.println(" to : " + to);
+			     Rel r1 = factory.createRel();
+		    	 r1.setSrc(tfrom);
+			     r1.setTgt(tto);
+			     model.getLinks().add(r1);
+		     }
+	     
+
 		}
 		
 	}
@@ -143,9 +166,9 @@ public class CanardTool {
 		
 	}
 	
-	private static CanardModel model;
+
 	public static void main(String[] args) throws IOException {
-		CanardFactory factory = CanardFactory.eINSTANCE;
+		factory = CanardFactory.eINSTANCE;
 		model = factory.createCanardModel();
 		
 		//Create blocks
@@ -156,7 +179,7 @@ public class CanardTool {
 		}
 
 		//Create relations
-		relationsFromLaunch(factory);
+		relationsFromLaunch();
 		
 		
 		XMIExporter.export(model, OUTPUTFILE);
