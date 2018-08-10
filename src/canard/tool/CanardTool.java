@@ -143,6 +143,8 @@ public class CanardTool {
 					     System.out.println("node : " +node);
 					     //nodes.add(node.replace(".launch", ""));
 						 model.getBlocks().add(makeBlock(node,factory));
+						 
+						 //TODO : Doit appeler une autre fonction pour faire les config des flags
 				     }
 				}
 	}
@@ -186,9 +188,8 @@ public class CanardTool {
 	     }
 	     
 	     return tfrom;
-
-	     
 	}
+	
 	private static boolean checkComment(String text, int pos){
 		String comment = "<!--";
 		String textval = "";

@@ -9,11 +9,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="blocks" upperBound="-1"
         eType="#//Block" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" upperBound="-1"
-        eType="#//Configuration" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="features" upperBound="-1"
-        eType="#//AbstractFeature" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="relations" upperBound="-1"
-        eType="#//Relation" containment="true"/>
+        eType="#//Flag" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//Constraint"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//Configuration"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Topic">
     <eAnnotations source="gmf.node">
@@ -25,22 +25,16 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uniqueID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
         iD="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Flag" eSuperTypes="#//AbstractFeature">
+  <eClassifiers xsi:type="ecore:EClass" name="Flag">
     <eAnnotations source="gmf.node">
       <details key="label" value="name"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//FlagValues"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="NAN"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Relation">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nameParent" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractFeature">
-    <eAnnotations source="gmf.node">
-      <details key="label" value="name"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        iD="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="child" upperBound="-1"
+        eType="#//Flag" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//Boolnull"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Block">
     <eAnnotations source="gmf.node">
@@ -79,17 +73,35 @@
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Configuration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="flags" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flags" lowerBound="1" upperBound="-1"
         eType="#//Flag"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="FlagValues">
-    <eLiterals name="TRUE" value="1"/>
-    <eLiterals name="FALSE"/>
-    <eLiterals name="NAN" value="2"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flagVal">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+        <eTypeArguments/>
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FeatureRelationType">
-    <eLiterals name="CHILD"/>
     <eLiterals name="REQUIRES" value="1"/>
     <eLiterals name="PROHIBITS" value="2"/>
+    <eLiterals name="AND"/>
+    <eLiterals name="OR"/>
+    <eLiterals name="XOR"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" eType="#//FeatureRelationType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//Flag"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Boolnull">
+    <eLiterals name="TRUE" literal="BoolNull"/>
+    <eLiterals name="FALSE"/>
+    <eLiterals name="NAN"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ValueType">
+    <eLiterals name="Boolnull"/>
+    <eLiterals name="String"/>
+    <eLiterals name="List"/>
   </eClassifiers>
 </ecore:EPackage>
