@@ -30,7 +30,7 @@ import canard.Topic;
 
 public class CanardTool {
 	public static final String INPUTLAUNCH = "input/master.launch";
-	public static final String OUTPUTFILE =  "output/outmaster.canard";
+	public static final String OUTPUTFILE =  "output/outmastergroupby.canard";
 	public static int uniqueID = 0;
 	private static CanardModel model;
 	private static CanardFactory factory;
@@ -52,31 +52,107 @@ public class CanardTool {
 		}
 		return text;
 	}
-	private static ArrayList<String> nodesFromLaunch(){
-		ArrayList nodes = new ArrayList<String>();
-		String text = readFile();
-		
-		//Does not consider the end bracket of include </include>
-		String wordToFind = "<include";
+	
+	private static void getGroups(String text){
+		int posIncl = text.indexOf("<include");
+		int posGroup = text.indexOf("<group");
+		int posRemap = text.indexOf("<remap");
+		if (posIncl < posGroup || posRemap < posGroup){
+			String tempText = text.substring(0,posGroup);
+			exeInclude(tempText);
+			relationsFromLaunch(tempText);
+		}
+		String wordToFind = "group";
 		Pattern word = Pattern.compile(wordToFind);
 		Matcher match = word.matcher(text);
-		
-
+		int cptGroup = 0 ;
+		int totalGroups = 0;
+		int debutGroupe = -1 ;
 		while (match.find()) {
-			//Finds the end of the line
-		     int endInclude = text.indexOf('>',match.end());
-		     String temp = text.substring(match.start()+1, endInclude);
-		     
-		     //Reverse search from the end to get the node's name
-		     int nodePos = temp.lastIndexOf("/");
-		     if (nodePos == temp.length()-1){
-		    	 //We have a / at the end, probably the machine file
-		    	 continue;
-		     }
-		     String node = temp.substring(nodePos+1,(endInclude-1)-match.start()-1);
-		     nodes.add(node.replace(".launch", ""));
+			if (debutGroupe == -1){
+				debutGroupe = match.start()-1;
+			}
+			if (text.charAt(match.start()-1) == '<'){
+				//On ouvre un groupe
+				cptGroup ++;
+				totalGroups ++;
+			}else{
+				//On ferme un groupe
+				cptGroup --;
+			}
+			if (cptGroup == 0){
+				//On ferme un groupe premier niveau
+				//On va gérer les noeuds dans le groupe via la position
+				int finGroupe = match.end()+1;
+				String groupText = text.substring(debutGroupe,finGroupe);
+				
+				//Doit verifier si l'argument est valide
+				int posArg = groupText.indexOf("arg");
+				posArg += 4; //$(arg camera)">
+				int posEndArg = groupText.indexOf(">");
+				String arg = groupText.substring(posArg,posEndArg-2); 
+				//TODO: Faire verification de l'argument ici
+				if (true){
+					String subgroupText = text.substring(debutGroupe+posEndArg,finGroupe-8);
+					if (totalGroups == 0){
+						return;
+					}else if (totalGroups == 1){
+						//Execute le include
+						exeInclude(subgroupText);
+						relationsFromLaunch(subgroupText);
+						debutGroupe = -1;
+						totalGroups = 0;
+					} else{
+						//Rappel recursivement la fonction
+						//Doit enlever le premier et dernier group
+						//debutGroupe = <, ajoute la longueur de la ligne
+						//finGroupe = >, soustrait la longueur de la ligne
+						getGroups(subgroupText);
+						totalGroups = 0;
+						debutGroupe = -1;
+					}
+				}
+			}
 		}
-		return nodes;
+	}
+	
+	static ArrayList<String> nodes = new ArrayList<String>();
+	private static void exeInclude(String text){
+
+		//Does not consider the end bracket of include </include>
+				String wordToFind = "<include";
+				Pattern word = Pattern.compile(wordToFind);
+				Matcher match = word.matcher(text);
+				
+
+				while (match.find()) {
+					//Finds the end of the line
+				     int endInclude = text.indexOf('>',match.end());
+				     if (!checkComment(text,match.start())){
+					     String temp = text.substring(match.start()+1, endInclude);
+					     
+					     //Reverse search from the end to get the node's name
+					     int nodePos = temp.lastIndexOf("/");
+					     if (nodePos == temp.length()-1){
+					    	 //We have a / at the end, probably the machine file
+					    	 continue;
+					     }
+					     String node = temp.substring(nodePos+1,(endInclude-1)-match.start()-1);
+					     node = node.replace(".launch", "");
+					     
+					     System.out.println("node : " +node);
+					     //nodes.add(node.replace(".launch", ""));
+						 model.getBlocks().add(makeBlock(node,factory));
+				     }
+				}
+	}
+	
+	private static void nodesFromLaunch(){
+
+		String text = readFile();
+		
+		getGroups(text);
+		
 		
 	}
 	private static void incrementID(){
@@ -113,44 +189,57 @@ public class CanardTool {
 
 	     
 	}
-	private static void relationsFromLaunch(){
-		
-		String text = readFile();
-		
+	private static boolean checkComment(String text, int pos){
+		String comment = "<!--";
+		String textval = "";
+		for (int i = comment.length() ; i > 0 ; i--){
+			textval += text.charAt(pos-i);
+		}
+		if(textval.contentEquals(comment)){
+			return true;
+		}
+		return false;
+	}
+	
+	private static void relationsFromLaunch(String text){
+			
 		//Doublon, to refactor
 		String wordToFind = "<remap";
 		Pattern word = Pattern.compile(wordToFind);
 		Matcher match = word.matcher(text);
 		
 		while (match.find()) {
+
 			 //Finds the end of the line
 		     int endInclude = text.indexOf('>',match.end());
-		     String temp = text.substring(match.start()+1, endInclude);
-		     
-			 String from = "from=\"";
-			 String to = "to=\"";
-			 
-		     int fromPos = temp.indexOf(from);
-		     int toPos = temp.indexOf(to);
-		     
-		     from = temp.substring(fromPos+6,toPos-2);
 
-		     Topic tfrom = makeRel(from);
-		     
-		     int endPos = temp.lastIndexOf("\"");
-		     to = temp.substring(toPos+4,endPos);
-
-		     Topic tto = makeRel(to);
-
-		     if (tfrom != null && tto != null){
-			     System.out.println("from : "+from);
-			     System.out.println(" to : " + to);
-			     Rel r1 = factory.createRel();
-		    	 r1.setSrc(tfrom);
-			     r1.setTgt(tto);
-			     model.getLinks().add(r1);
-		     }
-	     
+		     //Do not take the line into account if it's a comment
+			 if (!checkComment(text,match.start())){
+			     String temp = text.substring(match.start()+1, endInclude);
+				 String from = "from=\"";
+				 String to = "to=\"";
+				 
+			     int fromPos = temp.indexOf(from);
+			     int toPos = temp.indexOf(to);
+			     
+			     from = temp.substring(fromPos+6,toPos-2);
+	
+			     Topic tfrom = makeRel(from);
+			     
+			     int endPos = temp.lastIndexOf("\"");
+			     to = temp.substring(toPos+4,endPos);
+	
+			     Topic tto = makeRel(to);
+	
+			     if (tfrom != null && tto != null){
+				     System.out.println("from : "+from);
+				     System.out.println(" to : " + to);
+				     Rel r1 = factory.createRel();
+			    	 r1.setSrc(tfrom);
+				     r1.setTgt(tto);
+				     model.getLinks().add(r1);
+			     }
+			 }
 
 		}
 		
@@ -172,14 +261,11 @@ public class CanardTool {
 		model = factory.createCanardModel();
 		
 		//Create blocks
-		ArrayList<String> nodes = nodesFromLaunch();
-		for (String n : nodes){
-			System.out.println(n);
-			model.getBlocks().add(makeBlock(n,factory));
-		}
+		nodesFromLaunch();
+
 
 		//Create relations
-		relationsFromLaunch();
+		//relationsFromLaunch();
 		
 		
 		XMIExporter.export(model, OUTPUTFILE);
