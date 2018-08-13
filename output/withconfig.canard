@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="ASCII"?>
+<canard:CanardModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:canard="http://iro.umontreal.ca/canard">
+  <links src="1" tgt="2"/>
+  <links src="3" tgt="4"/>
+  <links src="5" tgt="4"/>
+  <links src="6" tgt="4"/>
+  <links src="7" tgt="8"/>
+  <links src="9" tgt="4"/>
+  <links src="10" tgt="11"/>
+  <links src="12" tgt="13"/>
+  <links src="14" tgt="15"/>
+  <links src="16" tgt="17"/>
+  <links src="18" tgt="19"/>
+  <links src="20" tgt="21"/>
+  <links src="22" tgt="23"/>
+  <links src="24" tgt="4"/>
+  <links src="25" tgt="26"/>
+  <links src="27" tgt="28"/>
+  <links src="29" tgt="28"/>
+  <links src="30" tgt="31"/>
+  <links src="32" tgt="33"/>
+  <links src="34" tgt="35"/>
+  <links src="36" tgt="28"/>
+  <links src="37" tgt="35"/>
+  <links src="38" tgt="39"/>
+  <links src="40" tgt="41"/>
+  <links src="42" tgt="43"/>
+  <links src="44" tgt="45"/>
+  <links src="46" tgt="47"/>
+  <links src="48" tgt="19"/>
+  <links src="49" tgt="50"/>
+  <links src="51" tgt="4"/>
+  <links src="52" tgt="53"/>
+  <links src="54" tgt="55"/>
+  <links src="56" tgt="4"/>
+  <links src="57" tgt="58"/>
+  <links src="4" tgt="8"/>
+  <links src="59" tgt="4"/>
+  <links src="60" tgt="8"/>
+  <links src="18" tgt="19"/>
+  <links src="62" tgt="63"/>
+  <links src="64" tgt="65"/>
+  <links src="68" tgt="40"/>
+  <links src="69" tgt="70"/>
+  <links src="71" tgt="40"/>
+  <links src="72" tgt="73"/>
+  <links src="74" tgt="40"/>
+  <links src="75" tgt="35"/>
+  <links src="76" tgt="77"/>
+  <links src="78" tgt="79"/>
+  <links src="80" tgt="40"/>
+  <links src="81" tgt="82"/>
+  <links src="83" tgt="40"/>
+  <links src="84" tgt="85"/>
+  <links src="86" tgt="87"/>
+  <links src="88" tgt="40"/>
+  <links src="89" tgt="90"/>
+  <links src="91" tgt="35"/>
+  <links src="92" tgt="93"/>
+  <links src="94" tgt="95"/>
+  <links src="96" tgt="77"/>
+  <links src="97" tgt="40"/>
+  <links src="99" tgt="100"/>
+  <links src="101" tgt="85"/>
+  <links src="102" tgt="103"/>
+  <links src="104" tgt="4"/>
+  <links src="105" tgt="85"/>
+  <blocks name="camera_node">
+    <topics name="camera_info" uniqueID="2"/>
+    <topics name="image" uniqueID="4"/>
+    <topics name="raw_camera_info" uniqueID="8"/>
+  </blocks>
+  <blocks name="cam_info_reader_node">
+    <topics name="camera_info" uniqueID="1"/>
+    <topics name="compressed_image" uniqueID="3"/>
+  </blocks>
+  <blocks name="decoder_node">
+    <topics name="compressed_image" uniqueID="5"/>
+    <topics name="image" uniqueID="6"/>
+  </blocks>
+  <blocks name="cam_info_reader_node"/>
+  <blocks name="image_proc_node"/>
+  <blocks name="inverse_kinematics_node">
+    <topics name="wheels_cmd" uniqueID="10"/>
+    <topics name="car_cmd" uniqueID="12"/>
+    <topics name="actuator_params_received" uniqueID="14"/>
+    <topics name="actuator_params" uniqueID="50"/>
+  </blocks>
+  <blocks name="wheels_driver_node">
+    <topics name="wheels_cmd" uniqueID="11"/>
+    <topics name="radius_limit" uniqueID="16"/>
+    <topics name="wheels_cmd_executed" uniqueID="19"/>
+  </blocks>
+  <blocks name="forward_kinematics_node">
+    <topics name="wheels_cmd" uniqueID="18"/>
+    <topics name="velocity" uniqueID="21"/>
+    <topics name="theta_dot_weights" uniqueID="62"/>
+    <topics name="v_weights" uniqueID="64"/>
+  </blocks>
+  <blocks name="velocity_to_pose_node">
+    <topics name="velocity" uniqueID="20"/>
+  </blocks>
+  <blocks name="joy_node"/>
+  <blocks name="joy_mapper_node">
+    <topics name="car_cmd" uniqueID="93"/>
+  </blocks>
+  <blocks name="fsm_node">
+    <topics name="mode" uniqueID="40"/>
+    <topics name="lane_pose_intersection_navigation" uniqueID="41"/>
+  </blocks>
+  <blocks name="car_cmd_switch_node">
+    <topics name="cmd_lane_following" uniqueID="22"/>
+    <topics name="cmd" uniqueID="31"/>
+  </blocks>
+  <blocks name="logic_gate_node"/>
+  <blocks name="line_detector_node">
+    <topics name="image" uniqueID="24"/>
+    <topics name="transform" uniqueID="25"/>
+  </blocks>
+  <blocks name="ground_projection">
+    <topics name="lineseglist_out" uniqueID="28"/>
+  </blocks>
+  <blocks name="duckiebot_visualizer">
+    <topics name="segment_list" uniqueID="27"/>
+  </blocks>
+  <blocks name="lane_filter_node">
+    <topics name="segment_list" uniqueID="29"/>
+    <topics name="car_cmd" uniqueID="30"/>
+    <topics name="lanewidth" uniqueID="33"/>
+    <topics name="lane_pose" uniqueID="35"/>
+    <topics name="lane_pose_obstacle_avoidance" uniqueID="43"/>
+    <topics name="lane_pose_parking" uniqueID="45"/>
+    <topics name="implicit_coordination_velocity" uniqueID="47"/>
+    <topics name="in_lane" uniqueID="79"/>
+  </blocks>
+  <blocks name="stop_line_filter_node">
+    <topics name="lanewidth" uniqueID="32"/>
+    <topics name="lane_pose" uniqueID="34"/>
+    <topics name="segment_list" uniqueID="36"/>
+    <topics name="stop_line_reading" uniqueID="77"/>
+  </blocks>
+  <blocks name="lane_controller_node">
+    <topics name="lane_pose" uniqueID="37"/>
+    <topics name="lane_pose_intersection_navigation" uniqueID="38"/>
+    <topics name="lane_pose_obstacle_avoidance" uniqueID="42"/>
+    <topics name="lane_pose_parking" uniqueID="44"/>
+    <topics name="implicit_coordination_velocity" uniqueID="46"/>
+    <topics name="wheels_cmd_executed" uniqueID="48"/>
+    <topics name="actuator_params" uniqueID="49"/>
+    <topics name="car_cmd" uniqueID="95"/>
+  </blocks>
+  <blocks name="lane_pose_visualizer_node"/>
+  <blocks name="static_object_detector_node">
+    <topics name="image_raw" uniqueID="51"/>
+    <topics name="detection_list" uniqueID="53"/>
+  </blocks>
+  <blocks name="obstacle_safety_node">
+    <topics name="detection_list" uniqueID="52"/>
+    <topics name="object_too_close" uniqueID="55"/>
+  </blocks>
+  <blocks name="simple_stop_controller_node">
+    <topics name="too_close" uniqueID="54"/>
+  </blocks>
+  <blocks name="vehicle_detection_node">
+    <topics name="detection" uniqueID="58"/>
+  </blocks>
+  <blocks name="vehicle_avoidance_control_node&quot;"/>
+  <blocks name="apriltag_detector_node"/>
+  <blocks name="apriltags_postprocessing_node">
+    <topics name="apriltags_in" uniqueID="61"/>
+    <topics name="apriltags_out" uniqueID="85"/>
+  </blocks>
+  <blocks name="LED_detection"/>
+  <blocks name="led_joy_mapper_node"/>
+  <blocks name="led_pattern_switch_node"/>
+  <blocks name="led_emitter_node"/>
+  <blocks name="LED_interpreter"/>
+  <blocks name="forward_kinematics_node"/>
+  <blocks name="kinematics_learning_node">
+    <topics name="v_sample" uniqueID="66"/>
+    <topics name="theta_dot_sample" uniqueID="67"/>
+  </blocks>
+  <blocks name="simple_coordinator_node">
+    <topics name="mode" uniqueID="68"/>
+    <topics name="signals_detection" uniqueID="69"/>
+    <topics name="car_cmd" uniqueID="73"/>
+  </blocks>
+  <blocks name="fake_coordinator_node">
+    <topics name="mode" uniqueID="71"/>
+    <topics name="car_cmd" uniqueID="72"/>
+  </blocks>
+  <blocks name="open_loop_intersection_controller_node"/>
+  <blocks name="sr_turns_node">
+    <topics name="mode" uniqueID="80"/>
+    <topics name="turn_type" uniqueID="81"/>
+  </blocks>
+  <blocks name="random_april_tag_turns_node">
+    <topics name="mode" uniqueID="83"/>
+    <topics name="tag" uniqueID="84"/>
+    <topics name="turn_type" uniqueID="86"/>
+  </blocks>
+  <blocks name="graph_search_server_node"/>
+  <blocks name="actions_dispatcher_node">
+    <topics name="fsm_mode" uniqueID="88"/>
+    <topics name="turn_type" uniqueID="89"/>
+  </blocks>
+  <blocks name="lane_supervisor_node">
+    <topics name="lane_pose" uniqueID="91"/>
+    <topics name="car_cmd_joy" uniqueID="92"/>
+    <topics name="car_cmd_lane" uniqueID="94"/>
+    <topics name="stop_line_reading" uniqueID="96"/>
+  </blocks>
+  <blocks name="intersection_supervisor_node">
+    <topics name="mode" uniqueID="97"/>
+    <topics name="joy" uniqueID="98"/>
+    <topics name="turn_type" uniqueID="99"/>
+    <topics name="tag" uniqueID="101"/>
+    <topics name="intersection_done" uniqueID="102"/>
+  </blocks>
+  <blocks name="anti_instagram_node">
+    <topics name="uncorrected_image" uniqueID="104"/>
+  </blocks>
+  <blocks name="duckietown_description_node"/>
+  <blocks name="localization_node">
+    <topics name="apriltags" uniqueID="105"/>
+  </blocks>
+  <flags name="Undefined">
+    <child name="veh"/>
+    <child name="config"/>
+    <child name="param_file_name"/>
+    <child name="fsm_file_name"/>
+    <child name="statistics"/>
+    <child name="loc"/>
+    <child name="line_detector_param_file_name"/>
+    <child name="intersectionType"/>
+    <child name="odometry"/>
+    <child name="/odometry/forward_kinematics"/>
+    <child name="fsm"/>
+    <child name="odometry_learning"/>
+    <child name="/odometry_learning/kinematics"/>
+    <child name="/odometry_learning/learning"/>
+    <child name="/odometry_learning/visual_odometry"/>
+    <child name="parallel_autonomy"/>
+    <child name="global_localizer"/>
+    <child name="SLAM"/>
+  </flags>
+  <flags name="Apriltags">
+    <child name="apriltags_param_file_name"/>
+    <child name="apriltags"/>
+    <child name="/apriltags/local"/>
+    <child name="/navigation/apriltags_random"/>
+  </flags>
+  <flags name="Control">
+    <child name="visualization"/>
+    <child name="joystick"/>
+    <child name="/LED/joystick"/>
+    <child name="coordination"/>
+  </flags>
+  <flags name="Specific">
+    <child name="verbose"/>
+    <child name="map_name"/>
+    <child name="anti_instagram"/>
+    <child name="wheels"/>
+    <child name="LED"/>
+    <child name="/LED/pattern_switch"/>
+    <child name="/LED/detector"/>
+    <child name="/LED/emitter"/>
+    <child name="/LED/interpreter"/>
+    <child name="/localization/map_name"/>
+  </flags>
+  <flags name="Camera">
+    <child name="camera"/>
+    <child name="/camera/raw"/>
+    <child name="/camera/cam_info"/>
+    <child name="/camera/raw/rect"/>
+    <child name="/camera/local"/>
+  </flags>
+  <flags name="LaneFollowing">
+    <child name="lane_following"/>
+    <child name="/lane_following/line_detection"/>
+    <child name="/lane_following/ground_projection"/>
+    <child name="/lane_following/lane_filter"/>
+    <child name="/lane_following/stop_line_filter"/>
+    <child name="/lane_following/lane_controller"/>
+  </flags>
+  <flags name="Avoidance">
+    <child name="obstacle_avoidance"/>
+    <child name="/obstacle_avoidance/simple_stop"/>
+    <child name="/obstacle_avoidance/detection"/>
+    <child name="/obstacle_avoidance/safety"/>
+    <child name="vehicle_avoidance"/>
+    <child name="/vehicle_avoidance/detection"/>
+    <child name="/vehicle_avoidance/control"/>
+  </flags>
+  <flags name="Navigation">
+    <child name="navigation"/>
+    <child name="/navigation/intersection_control"/>
+    <child name="/navigation/random_sr_turns"/>
+    <child name="/navigation/graph_planner"/>
+  </flags>
+  <flags name="Localization">
+    <child name="localization"/>
+    <child name="/localization/local"/>
+    <child name="/localization/gui"/>
+  </flags>
+  <configurations>
+    <configflags value=""/>
+  </configurations>
+</canard:CanardModel>

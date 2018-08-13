@@ -24,7 +24,7 @@ import canard.Topic;
 
 public class CanardTool {
 	public static final String INPUTLAUNCH = "input/master.launch";
-	public static final String OUTPUTFILE =  "output/outmastergroupby.canard";
+	public static final String OUTPUTFILE =  "output/withconfig.canard";
 	public static int uniqueID = 0;
 	private static CanardModel model;
 	private static CanardFactory factory;
@@ -144,9 +144,7 @@ public class CanardTool {
 	}
 	
 	private static void nodesFromLaunch(){
-
 		String text = readFile();
-		
 		getGroups(text);
 		
 		
@@ -155,7 +153,7 @@ public class CanardTool {
 		uniqueID+=1;
 	}
 	
-	private static Topic makeRel(String from){
+	private static Topic linkTopicToBlock(String from){
 		String[] nodeTopic = from.split("/");
 	     
 	     //TODO : decide what to do with the $
@@ -164,26 +162,37 @@ public class CanardTool {
 	    		 return null;
 	    	 }
 	     }
-	    Block bfrom = getBlockFromName(nodeTopic[0]);
+	    Block currBlock = getBlockFromName(nodeTopic[0]);
 	     
 	     //Pour gerer le cas ou un noeud pas include, mais remap
-	     if (bfrom == null && nodeTopic[0].contains("node")){
-	    	 bfrom = makeBlock(nodeTopic[0],factory);
+	     if (currBlock == null && nodeTopic[0].contains("node")){
+	    	 currBlock = makeBlock(nodeTopic[0],factory);
 	     }
 	     
-	     Topic tfrom = null;
+	     Topic currTopic = null;
 	     //TODO : Else, On a un remap sans node, quoi faire?
 	     if (nodeTopic.length != 1){
-		     tfrom = factory.createTopic();
-		     tfrom.setName(nodeTopic[1]);
-		     incrementID();
-		     tfrom.setUniqueID(uniqueID);
-		     bfrom.getTopics().add(tfrom);
+	    	 currTopic = getTopicFromName(nodeTopic[1],currBlock);
+		     if (currTopic == null){
+		    	 currTopic = factory.createTopic();
+			     currTopic.setName(nodeTopic[1]);
+			     incrementID();
+			     currTopic.setUniqueID(uniqueID);
+		     }
+		     currBlock.getTopics().add(currTopic);
 	     }
 	     
-	     return tfrom;
+	     return currTopic;
 	}
 	
+		private static Topic getTopicFromName(String name, Block b){
+				for (Topic top : b.getTopics()){
+					if (top.getName().equals(name)){
+						return top;
+					}
+				}
+			return null;
+		}
 	private static boolean checkComment(String text, int pos){
 		String comment = "<!--";
 		String textval = "";
@@ -218,13 +227,13 @@ public class CanardTool {
 			     int toPos = temp.indexOf(to);
 			     
 			     from = temp.substring(fromPos+6,toPos-2);
-	
-			     Topic tfrom = makeRel(from);
+			     from = from.replace("\"", "");
+			     Topic tfrom = linkTopicToBlock(from);
 			     
 			     int endPos = temp.lastIndexOf("\"");
 			     to = temp.substring(toPos+4,endPos);
-	
-			     Topic tto = makeRel(to);
+			     to = to.replace("\"", "");
+			     Topic tto = linkTopicToBlock(to);
 	
 			     if (tfrom != null && tto != null){
 				     System.out.println("from : "+from);
@@ -262,7 +271,7 @@ public class CanardTool {
 		//Create relations
 		//relationsFromLaunch();
 		
-		
+		GenConfig.genConfig(model, factory);
 		XMIExporter.export(model, OUTPUTFILE);
 
 

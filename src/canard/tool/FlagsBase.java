@@ -15,6 +15,25 @@ import canard.Flag;
 public class FlagsBase {
 	static Map<String, ArrayList<String>> dict = new HashMap<String, ArrayList<String>>();
 	public static final String INPUTFLAGS = "input/flags.txt";
+	private static String[] formatArg(String line){
+		line = line.replace("\t", "");
+		line = line.replace("\"/>", "\" />"); //Add space if absent for splitting
+		String[] parts = line.split(" ");
+		return parts;
+	}
+	
+	//search is either name= or value=
+	public static String getArgInfo(String line, String search){
+		String[] parts = formatArg(line);
+		String flagInfo = "";
+		for (int i=0; i<parts.length;i++){
+			if (parts[i].contains(search)){
+				flagInfo = parts[i].replace(search,"");
+				flagInfo = flagInfo.replaceAll("\"", "");
+			}
+		}
+		return flagInfo;
+	}
 	
 	public static void generateFlags(CanardFactory factory,CanardModel model){
 		initDict();		
@@ -25,18 +44,9 @@ public class FlagsBase {
 			String line = reader.readLine();
 			while (line != null) {
 				System.out.println(line);
-				line = line.replace("\t", "");
-				line = line.replace("\"/>", "\" />"); //Add space if absent for splitting
-				String[] parts = line.split(" ");
-				String flagname = "";
-				for (int i=0; i<parts.length;i++){
-					if (parts[i].contains("name=")){
-						flagname = parts[i].replace("name=","");
-						flagname = flagname.replaceAll("\"", "");
-					}
-				}
+				String flagname = getArgInfo(line, "name=");
 				String category = findCategory(flagname);
-				Flag catFlag = checkFlagExists(category, model);
+				Flag catFlag = getFlagByName(category, model);
 				if (catFlag == null){
 					//Category doesn't exist yet, must create it
 					catFlag = makeFlag(category, factory, true);
@@ -60,9 +70,9 @@ public class FlagsBase {
 		}
 	}
 	
-	private static Flag checkFlagExists(String category,CanardModel model){
+	public static Flag getFlagByName(String flagName,CanardModel model){
 		for (Flag f : model.getFlags()){
-			if (f.getName().equals(category)){
+			if (f.getName().equals(flagName)){
 				return f;
 			}
 		}
@@ -152,6 +162,7 @@ public class FlagsBase {
 		//f1.setisAbstract(AbstractVal);
 		return f1;
 	}
+
 	
 	private static void compareDemo(String demoName, String text){
 		//Comment faire le lien avec UI sans tout recoder..? Peut comparer 2 structures EObject?

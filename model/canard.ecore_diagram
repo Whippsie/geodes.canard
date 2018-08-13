@@ -347,7 +347,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_mobdYZy6EeiiaPJi_9kY9Q" y="40"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_mobdYpy6EeiiaPJi_9kY9Q" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_mobdY5y6EeiiaPJi_9kY9Q" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_mobdY5y6EeiiaPJi_9kY9Q" x="-11" y="29"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_moa2UZy6EeiiaPJi_9kY9Q" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="canard.ecore#//Rel/src"/>
@@ -360,7 +360,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_moiyJJy6EeiiaPJi_9kY9Q" y="40"/>
     </children>
     <children xmi:type="notation:DecorationNode" xmi:id="_moiyJZy6EeiiaPJi_9kY9Q" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_moiyJpy6EeiiaPJi_9kY9Q" y="60"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_moiyJpy6EeiiaPJi_9kY9Q" x="-44" y="-59"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_moiyIZy6EeiiaPJi_9kY9Q" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="canard.ecore#//Rel/tgt"/>
