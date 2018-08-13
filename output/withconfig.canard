@@ -224,7 +224,7 @@
   <blocks name="localization_node">
     <topics name="apriltags" uniqueID="105"/>
   </blocks>
-  <flags name="Undefined">
+  <flags name="Undefined" isAbstract="true">
     <child name="veh"/>
     <child name="config"/>
     <child name="param_file_name"/>
@@ -244,19 +244,19 @@
     <child name="global_localizer"/>
     <child name="SLAM"/>
   </flags>
-  <flags name="Apriltags">
+  <flags name="Apriltags" isAbstract="true">
     <child name="apriltags_param_file_name"/>
     <child name="apriltags"/>
     <child name="/apriltags/local"/>
     <child name="/navigation/apriltags_random"/>
   </flags>
-  <flags name="Control">
+  <flags name="Control" isAbstract="true">
     <child name="visualization"/>
     <child name="joystick"/>
     <child name="/LED/joystick"/>
     <child name="coordination"/>
   </flags>
-  <flags name="Specific">
+  <flags name="Specific" isAbstract="true">
     <child name="verbose"/>
     <child name="map_name"/>
     <child name="anti_instagram"/>
@@ -268,14 +268,14 @@
     <child name="/LED/interpreter"/>
     <child name="/localization/map_name"/>
   </flags>
-  <flags name="Camera">
+  <flags name="Camera" isAbstract="true">
     <child name="camera"/>
     <child name="/camera/raw"/>
     <child name="/camera/cam_info"/>
     <child name="/camera/raw/rect"/>
     <child name="/camera/local"/>
   </flags>
-  <flags name="LaneFollowing">
+  <flags name="LaneFollowing" isAbstract="true">
     <child name="lane_following"/>
     <child name="/lane_following/line_detection"/>
     <child name="/lane_following/ground_projection"/>
@@ -283,7 +283,7 @@
     <child name="/lane_following/stop_line_filter"/>
     <child name="/lane_following/lane_controller"/>
   </flags>
-  <flags name="Avoidance">
+  <flags name="Avoidance" isAbstract="true">
     <child name="obstacle_avoidance"/>
     <child name="/obstacle_avoidance/simple_stop"/>
     <child name="/obstacle_avoidance/detection"/>
@@ -292,18 +292,25 @@
     <child name="/vehicle_avoidance/detection"/>
     <child name="/vehicle_avoidance/control"/>
   </flags>
-  <flags name="Navigation">
+  <flags name="Navigation" isAbstract="true">
     <child name="navigation"/>
     <child name="/navigation/intersection_control"/>
     <child name="/navigation/random_sr_turns"/>
     <child name="/navigation/graph_planner"/>
   </flags>
-  <flags name="Localization">
+  <flags name="Localization" isAbstract="true">
     <child name="localization"/>
     <child name="/localization/local"/>
     <child name="/localization/gui"/>
   </flags>
   <configurations>
-    <configflags value=""/>
+    <configflags value="true" key="//@flags.1/@child.1"/>
+    <configflags value="true" key="//@flags.4/@child.1"/>
+    <configflags value="true" key="//@flags.4/@child.3"/>
+    <configflags value="true" key="//@flags.8/@child.0"/>
+    <configflags value="true" key="//@flags.3/@child.9"/>
+    <configflags value="false" key="//@flags.8/@child.2"/>
+    <configflags value="false" key="//@flags.5/@child.0"/>
+    <configflags value="false" key="//@flags.3/@child.4"/>
   </configurations>
 </canard:CanardModel>

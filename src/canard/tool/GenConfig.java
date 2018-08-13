@@ -25,11 +25,13 @@ public class GenConfig {
 			while (line != null) {
 				line = reader.readLine();
 				//Launch bug sans cette ligne
-				if (line !=null){
+				if (line != null){
 					String argName = FlagsBase.getArgInfo(line,"name=");
 					String argValue = FlagsBase.getArgInfo(line,"value=");
-					Flag f = FlagsBase.getFlagByName(argName, model);
-					flags.put(f,argValue);
+					if (!argName.equals("")&& !argValue.equals("")){
+						Flag f = FlagsBase.getFlagByName(argName, model);
+						flags.put(f,argValue);
+					}
 				}
 			}
 			reader.close();

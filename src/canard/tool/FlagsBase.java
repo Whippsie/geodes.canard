@@ -50,13 +50,13 @@ public class FlagsBase {
 				if (catFlag == null){
 					//Category doesn't exist yet, must create it
 					catFlag = makeFlag(category, factory, true);
+					model.getFlags().add(catFlag);
 				}
 				
 				//Create arg flag
 				Flag currFlag = makeFlag(flagname, factory, false);
 				
 				//Add flags to the model
-				model.getFlags().add(catFlag);
 				model.getFlags().add(currFlag);
 				
 				//Link category and flag
@@ -74,6 +74,11 @@ public class FlagsBase {
 		for (Flag f : model.getFlags()){
 			if (f.getName().equals(flagName)){
 				return f;
+			}
+			for (Flag child : f.getChild()){
+				if (child.getName().equals(flagName)){
+					return child;
+				}
 			}
 		}
 		return null;
@@ -145,7 +150,7 @@ public class FlagsBase {
 		i++;
 
 	}
-	private static Flag makeFlag(String flagName,CanardFactory factory, boolean AbstractVal){
+	private static Flag makeFlag(String flagName,CanardFactory factory, boolean abstractVal){
 		Flag f1 = factory.createFlag();
 		//String search = "name=\"";
 		//int posArg = line.indexOf(search) + search.length();
@@ -153,7 +158,7 @@ public class FlagsBase {
 		//Fetch the beginning of the argument name until the second " found in the line
 		//String name = line.substring(posArg,line.indexOf("\"",posArg));
 		f1.setName(flagName);
-
+		f1.setIsAbstract(abstractVal);
 		//TODO: Complete this
 		//if (line.contains("true") || line.contains("false")){
 			//f1.setValue(boolean);
