@@ -8,12 +8,12 @@
         eType="#//Rel" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="blocks" upperBound="-1"
         eType="#//Block" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="flags" upperBound="-1"
         eType="#//Flag" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//Constraint"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//Configuration"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configurations" upperBound="-1"
+        eType="#//Configuration" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Topic">
     <eAnnotations source="gmf.node">
@@ -73,15 +73,9 @@
         unique="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Configuration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="flags" lowerBound="1" upperBound="-1"
-        eType="#//Flag"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="flagVal">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments/>
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="configflags" upperBound="-1"
+        eType="#//FlagToEBooleanMap" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="FeatureRelationType">
     <eLiterals name="REQUIRES" value="1"/>
@@ -92,10 +86,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="feature" eType="#//FeatureRelationType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" upperBound="-1" eType="#//Flag"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="cons_flags" upperBound="-1"
+        eType="#//Flag"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Boolnull">
-    <eLiterals name="TRUE" literal="BoolNull"/>
+    <eLiterals name="TRUE"/>
     <eLiterals name="FALSE"/>
     <eLiterals name="NAN"/>
   </eClassifiers>
@@ -103,5 +98,9 @@
     <eLiterals name="Boolnull"/>
     <eLiterals name="String"/>
     <eLiterals name="List"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FlagToEBooleanMap" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//Flag"/>
   </eClassifiers>
 </ecore:EPackage>

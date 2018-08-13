@@ -7,7 +7,7 @@
     <containsShortcutsTo>canard</containsShortcutsTo>
     <shortcutsProvidedFor>canard</shortcutsProvidedFor>
     <domainDiagramElement href="canard.genmodel#//canard/CanardModel"/>
-    <childNodes xsi:type="gmfgen:GenChildSideAffixedNode" visualID="3002" editPartClassName="TopicEditPart" itemSemanticEditPolicyClassName="TopicItemSemanticEditPolicy" canonicalEditPolicyClassName="TopicCanonicalEditPolicy" graphicalNodeEditPolicyClassName="TopicGraphicalNodeEditPolicy" createCommandClassName="TopicCreateCommand" containers="//@diagram/@topLevelNodes.1" preferredSideName="NORTH">
+    <childNodes xsi:type="gmfgen:GenChildSideAffixedNode" visualID="3002" editPartClassName="TopicEditPart" itemSemanticEditPolicyClassName="TopicItemSemanticEditPolicy" canonicalEditPolicyClassName="TopicCanonicalEditPolicy" graphicalNodeEditPolicyClassName="TopicGraphicalNodeEditPolicy" createCommandClassName="TopicCreateCommand" containers="//@diagram/@topLevelNodes.0" preferredSideName="NORTH">
       <diagramRunTimeClass href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="TopicEditHelper"/>
       <viewmap xsi:type="gmfgen:InnerClassViewmap" className="TopicFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class TopicFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureTopicLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public TopicFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;&#x9;this.setBackgroundColor(THIS_BACK&#xA;);&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureTopicLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureTopicLabelFigure.setText(&quot;Topic&quot;);&#xA;&#xA;this.add(fFigureTopicLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureTopicLabelFigure() {&#xA;&#x9;&#x9;return fFigureTopicLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Color THIS_BACK = new org.eclipse.swt.graphics.Color(null, 250, 229, 150);&#xA;&#xA;">
@@ -26,23 +26,6 @@
         </modelFacet>
       </labels>
     </childNodes>
-    <topLevelNodes visualID="2001" editPartClassName="FlagEditPart" itemSemanticEditPolicyClassName="FlagItemSemanticEditPolicy" canonicalEditPolicyClassName="FlagCanonicalEditPolicy" graphicalNodeEditPolicyClassName="FlagGraphicalNodeEditPolicy" createCommandClassName="FlagCreateCommand">
-      <diagramRunTimeClass href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="FlagEditHelper"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="FlagFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FlagFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureFlagLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FlagFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureFlagLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureFlagLabelFigure.setText(&quot;Flag&quot;);&#xA;&#xA;this.add(fFigureFlagLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureFlagLabelFigure() {&#xA;&#x9;&#x9;return fFigureFlagLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
-      <modelFacet>
-        <metaClass href="canard.genmodel#//canard/Flag"/>
-        <containmentMetaFeature href="canard.genmodel#//canard/CanardModel/features"/>
-        <childMetaFeature href="canard.genmodel#//canard/CanardModel/features"/>
-      </modelFacet>
-      <labels visualID="5001" editPartClassName="FlagNameEditPart" itemSemanticEditPolicyClassName="FlagNameItemSemanticEditPolicy" elementIcon="true">
-        <diagramRunTimeClass href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureFlagLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
-        <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0">
-          <metaFeatures href="canard.genmodel#//canard/AbstractFeature/name"/>
-        </modelFacet>
-      </labels>
-    </topLevelNodes>
     <topLevelNodes visualID="2005" editPartClassName="BlockEditPart" itemSemanticEditPolicyClassName="BlockItemSemanticEditPolicy" canonicalEditPolicyClassName="BlockCanonicalEditPolicy" childNodes="//@diagram/@childNodes.0" graphicalNodeEditPolicyClassName="BlockGraphicalNodeEditPolicy" createCommandClassName="BlockCreateCommand">
       <diagramRunTimeClass href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="BlockEditHelper"/>
@@ -62,20 +45,20 @@
         </modelFacet>
       </labels>
     </topLevelNodes>
-    <topLevelNodes visualID="2003" editPartClassName="AbstractFeatureEditPart" itemSemanticEditPolicyClassName="AbstractFeatureItemSemanticEditPolicy" canonicalEditPolicyClassName="AbstractFeatureCanonicalEditPolicy" graphicalNodeEditPolicyClassName="AbstractFeatureGraphicalNodeEditPolicy" createCommandClassName="AbstractFeatureCreateCommand">
+    <topLevelNodes visualID="2006" editPartClassName="FlagEditPart" itemSemanticEditPolicyClassName="FlagItemSemanticEditPolicy" canonicalEditPolicyClassName="FlagCanonicalEditPolicy" graphicalNodeEditPolicyClassName="FlagGraphicalNodeEditPolicy" createCommandClassName="FlagCreateCommand">
       <diagramRunTimeClass href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="AbstractFeatureEditHelper"/>
-      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="AbstractFeatureFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class AbstractFeatureFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureAbstractFeatureLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public AbstractFeatureFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureAbstractFeatureLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureAbstractFeatureLabelFigure.setText(&quot;AbstractFeature&quot;);&#xA;&#xA;this.add(fFigureAbstractFeatureLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureAbstractFeatureLabelFigure() {&#xA;&#x9;&#x9;return fFigureAbstractFeatureLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
+      <elementType xsi:type="gmfgen:MetamodelType" editHelperClassName="FlagEditHelper"/>
+      <viewmap xsi:type="gmfgen:InnerClassViewmap" className="FlagFigure" classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FlagFigure extends org.eclipse.draw2d.RoundedRectangle {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel fFigureFlagLabelFigure; &#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FlagFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setCornerDimensions(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(8)&#xA;, getMapMode().DPtoLP(8)&#xA;));&#xA;this.setBorder(new org.eclipse.draw2d.MarginBorder(getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;, getMapMode().DPtoLP(5)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fFigureFlagLabelFigure = new org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel();&#xA;&#xA;fFigureFlagLabelFigure.setText(&quot;Flag&quot;);&#xA;&#xA;this.add(fFigureFlagLabelFigure);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel getFigureFlagLabelFigure() {&#xA;&#x9;&#x9;return fFigureFlagLabelFigure;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;"/>
       <modelFacet>
-        <metaClass href="canard.genmodel#//canard/AbstractFeature"/>
-        <containmentMetaFeature href="canard.genmodel#//canard/CanardModel/features"/>
-        <childMetaFeature href="canard.genmodel#//canard/CanardModel/features"/>
+        <metaClass href="canard.genmodel#//canard/Flag"/>
+        <containmentMetaFeature href="canard.genmodel#//canard/CanardModel/flags"/>
+        <childMetaFeature href="canard.genmodel#//canard/CanardModel/flags"/>
       </modelFacet>
-      <labels visualID="5003" editPartClassName="AbstractFeatureNameEditPart" itemSemanticEditPolicyClassName="AbstractFeatureNameItemSemanticEditPolicy" elementIcon="true">
+      <labels visualID="5008" editPartClassName="FlagNameEditPart" itemSemanticEditPolicyClassName="FlagNameItemSemanticEditPolicy" elementIcon="true">
         <diagramRunTimeClass href="platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
-        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureAbstractFeatureLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
+        <viewmap xsi:type="gmfgen:ParentAssignedViewmap" getterName="getFigureFlagLabelFigure" figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel"/>
         <modelFacet xsi:type="gmfgen:FeatureLabelModelFacet" parser="//@labelParsers/@implementations.0">
-          <metaFeatures href="canard.genmodel#//canard/AbstractFeature/name"/>
+          <metaFeatures href="canard.genmodel#//canard/Flag/name"/>
         </modelFacet>
       </labels>
     </topLevelNodes>
@@ -102,9 +85,8 @@
     </links>
     <palette>
       <groups title="Objects" collapse="true">
-        <entries xsi:type="gmfgen:ToolEntry" title="AbstractFeature" description="Create new AbstractFeature" genNodes="//@diagram/@topLevelNodes.2"/>
-        <entries xsi:type="gmfgen:ToolEntry" title="Block" description="Create new Block" genNodes="//@diagram/@topLevelNodes.1"/>
-        <entries xsi:type="gmfgen:ToolEntry" title="Flag" description="Create new Flag" genNodes="//@diagram/@topLevelNodes.0"/>
+        <entries xsi:type="gmfgen:ToolEntry" title="Block" description="Create new Block" genNodes="//@diagram/@topLevelNodes.0"/>
+        <entries xsi:type="gmfgen:ToolEntry" title="Flag" description="Create new Flag" genNodes="//@diagram/@topLevelNodes.1"/>
         <entries xsi:type="gmfgen:ToolEntry" title="Topic" description="Create new Topic" genNodes="//@diagram/@childNodes.0"/>
       </groups>
       <groups title="Connections" collapse="true">
@@ -126,10 +108,9 @@
   <editor/>
   <navigator>
     <childReferences child="//@diagram"/>
+    <childReferences parent="//@diagram/@topLevelNodes.0" child="//@diagram/@childNodes.0"/>
     <childReferences parent="//@diagram" child="//@diagram/@topLevelNodes.0"/>
-    <childReferences parent="//@diagram/@topLevelNodes.1" child="//@diagram/@childNodes.0"/>
     <childReferences parent="//@diagram" child="//@diagram/@topLevelNodes.1"/>
-    <childReferences parent="//@diagram" child="//@diagram/@topLevelNodes.2"/>
     <childReferences parent="//@diagram" child="//@diagram/@links.0" groupName="links" groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@links.0" child="//@diagram/@childNodes.0" referenceType="out_target" groupName="target" groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences parent="//@diagram/@childNodes.0" child="//@diagram/@links.0" referenceType="in_source" groupName="incoming links" groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
@@ -150,7 +131,7 @@
   </propertySheet>
   <domainGenModel href="canard.genmodel#/"/>
   <labelParsers extensibleViaService="true">
-    <implementations xsi:type="gmfgen:PredefinedParser" uses="//@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@topLevelNodes.2/@labels.0/@modelFacet //@diagram/@links.0/@labels.0/@modelFacet"/>
+    <implementations xsi:type="gmfgen:PredefinedParser" uses="//@diagram/@childNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.0/@labels.0/@modelFacet //@diagram/@topLevelNodes.1/@labels.0/@modelFacet //@diagram/@links.0/@labels.0/@modelFacet"/>
   </labelParsers>
   <contextMenus context="//@diagram">
     <items xsi:type="gmfgen:LoadResourceAction"/>

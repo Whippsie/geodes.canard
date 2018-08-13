@@ -2,13 +2,13 @@
  */
 package canard.impl;
 
-import canard.AbstractFeature;
 import canard.Block;
 import canard.CanardModel;
 import canard.CanardPackage;
 import canard.Configuration;
+import canard.Constraint;
+import canard.Flag;
 import canard.Rel;
-import canard.Relation;
 
 import java.util.Collection;
 
@@ -34,9 +34,9 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link canard.impl.CanardModelImpl#getLinks <em>Links</em>}</li>
  *   <li>{@link canard.impl.CanardModelImpl#getBlocks <em>Blocks</em>}</li>
+ *   <li>{@link canard.impl.CanardModelImpl#getFlags <em>Flags</em>}</li>
+ *   <li>{@link canard.impl.CanardModelImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link canard.impl.CanardModelImpl#getConfigurations <em>Configurations</em>}</li>
- *   <li>{@link canard.impl.CanardModelImpl#getFeatures <em>Features</em>}</li>
- *   <li>{@link canard.impl.CanardModelImpl#getRelations <em>Relations</em>}</li>
  * </ul>
  *
  * @generated
@@ -63,6 +63,26 @@ public class CanardModelImpl extends EObjectImpl implements CanardModel {
 	protected EList<Block> blocks;
 
 	/**
+	 * The cached value of the '{@link #getFlags() <em>Flags</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFlags()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Flag> flags;
+
+	/**
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConstraints()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Constraint> constraints;
+
+	/**
 	 * The cached value of the '{@link #getConfigurations() <em>Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,26 +91,6 @@ public class CanardModelImpl extends EObjectImpl implements CanardModel {
 	 * @ordered
 	 */
 	protected EList<Configuration> configurations;
-
-	/**
-	 * The cached value of the '{@link #getFeatures() <em>Features</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getFeatures()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<AbstractFeature> features;
-
-	/**
-	 * The cached value of the '{@link #getRelations() <em>Relations</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getRelations()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Relation> relations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -140,35 +140,35 @@ public class CanardModelImpl extends EObjectImpl implements CanardModel {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Flag> getFlags() {
+		if (flags == null) {
+			flags = new EObjectContainmentEList<Flag>(Flag.class, this, CanardPackage.CANARD_MODEL__FLAGS);
+		}
+		return flags;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Constraint> getConstraints() {
+		if (constraints == null) {
+			constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, CanardPackage.CANARD_MODEL__CONSTRAINTS);
+		}
+		return constraints;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EList<Configuration> getConfigurations() {
 		if (configurations == null) {
 			configurations = new EObjectContainmentEList<Configuration>(Configuration.class, this, CanardPackage.CANARD_MODEL__CONFIGURATIONS);
 		}
 		return configurations;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<AbstractFeature> getFeatures() {
-		if (features == null) {
-			features = new EObjectContainmentEList<AbstractFeature>(AbstractFeature.class, this, CanardPackage.CANARD_MODEL__FEATURES);
-		}
-		return features;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Relation> getRelations() {
-		if (relations == null) {
-			relations = new EObjectContainmentEList<Relation>(Relation.class, this, CanardPackage.CANARD_MODEL__RELATIONS);
-		}
-		return relations;
 	}
 
 	/**
@@ -183,12 +183,12 @@ public class CanardModelImpl extends EObjectImpl implements CanardModel {
 				return ((InternalEList<?>)getLinks()).basicRemove(otherEnd, msgs);
 			case CanardPackage.CANARD_MODEL__BLOCKS:
 				return ((InternalEList<?>)getBlocks()).basicRemove(otherEnd, msgs);
+			case CanardPackage.CANARD_MODEL__FLAGS:
+				return ((InternalEList<?>)getFlags()).basicRemove(otherEnd, msgs);
+			case CanardPackage.CANARD_MODEL__CONSTRAINTS:
+				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 			case CanardPackage.CANARD_MODEL__CONFIGURATIONS:
 				return ((InternalEList<?>)getConfigurations()).basicRemove(otherEnd, msgs);
-			case CanardPackage.CANARD_MODEL__FEATURES:
-				return ((InternalEList<?>)getFeatures()).basicRemove(otherEnd, msgs);
-			case CanardPackage.CANARD_MODEL__RELATIONS:
-				return ((InternalEList<?>)getRelations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -205,12 +205,12 @@ public class CanardModelImpl extends EObjectImpl implements CanardModel {
 				return getLinks();
 			case CanardPackage.CANARD_MODEL__BLOCKS:
 				return getBlocks();
+			case CanardPackage.CANARD_MODEL__FLAGS:
+				return getFlags();
+			case CanardPackage.CANARD_MODEL__CONSTRAINTS:
+				return getConstraints();
 			case CanardPackage.CANARD_MODEL__CONFIGURATIONS:
 				return getConfigurations();
-			case CanardPackage.CANARD_MODEL__FEATURES:
-				return getFeatures();
-			case CanardPackage.CANARD_MODEL__RELATIONS:
-				return getRelations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -232,17 +232,17 @@ public class CanardModelImpl extends EObjectImpl implements CanardModel {
 				getBlocks().clear();
 				getBlocks().addAll((Collection<? extends Block>)newValue);
 				return;
+			case CanardPackage.CANARD_MODEL__FLAGS:
+				getFlags().clear();
+				getFlags().addAll((Collection<? extends Flag>)newValue);
+				return;
+			case CanardPackage.CANARD_MODEL__CONSTRAINTS:
+				getConstraints().clear();
+				getConstraints().addAll((Collection<? extends Constraint>)newValue);
+				return;
 			case CanardPackage.CANARD_MODEL__CONFIGURATIONS:
 				getConfigurations().clear();
 				getConfigurations().addAll((Collection<? extends Configuration>)newValue);
-				return;
-			case CanardPackage.CANARD_MODEL__FEATURES:
-				getFeatures().clear();
-				getFeatures().addAll((Collection<? extends AbstractFeature>)newValue);
-				return;
-			case CanardPackage.CANARD_MODEL__RELATIONS:
-				getRelations().clear();
-				getRelations().addAll((Collection<? extends Relation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -262,14 +262,14 @@ public class CanardModelImpl extends EObjectImpl implements CanardModel {
 			case CanardPackage.CANARD_MODEL__BLOCKS:
 				getBlocks().clear();
 				return;
+			case CanardPackage.CANARD_MODEL__FLAGS:
+				getFlags().clear();
+				return;
+			case CanardPackage.CANARD_MODEL__CONSTRAINTS:
+				getConstraints().clear();
+				return;
 			case CanardPackage.CANARD_MODEL__CONFIGURATIONS:
 				getConfigurations().clear();
-				return;
-			case CanardPackage.CANARD_MODEL__FEATURES:
-				getFeatures().clear();
-				return;
-			case CanardPackage.CANARD_MODEL__RELATIONS:
-				getRelations().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -287,12 +287,12 @@ public class CanardModelImpl extends EObjectImpl implements CanardModel {
 				return links != null && !links.isEmpty();
 			case CanardPackage.CANARD_MODEL__BLOCKS:
 				return blocks != null && !blocks.isEmpty();
+			case CanardPackage.CANARD_MODEL__FLAGS:
+				return flags != null && !flags.isEmpty();
+			case CanardPackage.CANARD_MODEL__CONSTRAINTS:
+				return constraints != null && !constraints.isEmpty();
 			case CanardPackage.CANARD_MODEL__CONFIGURATIONS:
 				return configurations != null && !configurations.isEmpty();
-			case CanardPackage.CANARD_MODEL__FEATURES:
-				return features != null && !features.isEmpty();
-			case CanardPackage.CANARD_MODEL__RELATIONS:
-				return relations != null && !relations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

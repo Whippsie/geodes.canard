@@ -4,6 +4,7 @@ package canard.util;
 
 import canard.*;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -81,19 +82,6 @@ public class CanardSwitch<T> extends Switch<T> {
 			case CanardPackage.FLAG: {
 				Flag flag = (Flag)theEObject;
 				T result = caseFlag(flag);
-				if (result == null) result = caseAbstractFeature(flag);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case CanardPackage.RELATION: {
-				Relation relation = (Relation)theEObject;
-				T result = caseRelation(relation);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case CanardPackage.ABSTRACT_FEATURE: {
-				AbstractFeature abstractFeature = (AbstractFeature)theEObject;
-				T result = caseAbstractFeature(abstractFeature);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -118,6 +106,18 @@ public class CanardSwitch<T> extends Switch<T> {
 			case CanardPackage.CONFIGURATION: {
 				Configuration configuration = (Configuration)theEObject;
 				T result = caseConfiguration(configuration);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CanardPackage.CONSTRAINT: {
+				Constraint constraint = (Constraint)theEObject;
+				T result = caseConstraint(constraint);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case CanardPackage.FLAG_TO_EBOOLEAN_MAP: {
+				@SuppressWarnings("unchecked") Map.Entry<Flag, String> flagToEBooleanMap = (Map.Entry<Flag, String>)theEObject;
+				T result = caseFlagToEBooleanMap(flagToEBooleanMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -167,36 +167,6 @@ public class CanardSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseFlag(Flag object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Relation</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Relation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRelation(Relation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Abstract Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Abstract Feature</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAbstractFeature(AbstractFeature object) {
 		return null;
 	}
 
@@ -257,6 +227,36 @@ public class CanardSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseConfiguration(Configuration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseConstraint(Constraint object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Flag To EBoolean Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Flag To EBoolean Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFlagToEBooleanMap(Map.Entry<Flag, String> object) {
 		return null;
 	}
 

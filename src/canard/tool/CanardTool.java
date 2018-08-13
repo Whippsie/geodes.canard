@@ -5,22 +5,16 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-
-import org.eclipse.osgi.util.NLS;
 
 import canard.Block;
 import canard.CanardFactory;
@@ -260,7 +254,7 @@ public class CanardTool {
 	public static void main(String[] args) throws IOException {
 		factory = CanardFactory.eINSTANCE;
 		model = factory.createCanardModel();
-		
+		FlagsBase.generateFlags(factory, model);
 		//Create blocks
 		nodesFromLaunch();
 

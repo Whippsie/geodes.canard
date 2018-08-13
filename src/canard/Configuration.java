@@ -2,8 +2,7 @@
  */
 package canard;
 
-import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,7 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link canard.Configuration#getFlags <em>Flags</em>}</li>
+ *   <li>{@link canard.Configuration#getName <em>Name</em>}</li>
+ *   <li>{@link canard.Configuration#getConfigflags <em>Configflags</em>}</li>
  * </ul>
  *
  * @see canard.CanardPackage#getConfiguration()
@@ -24,19 +24,46 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Configuration extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Flags</b></em>' reference list.
-	 * The list contents are of type {@link canard.Flag}.
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Flags</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Flags</em>' reference list.
-	 * @see canard.CanardPackage#getConfiguration_Flags()
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see canard.CanardPackage#getConfiguration_Name()
 	 * @model
 	 * @generated
 	 */
-	EList<Flag> getFlags();
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link canard.Configuration#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Configflags</b></em>' map.
+	 * The key is of type {@link canard.Flag},
+	 * and the value is of type {@link java.lang.String},
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Configflags</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Configflags</em>' map.
+	 * @see canard.CanardPackage#getConfiguration_Configflags()
+	 * @model mapType="canard.FlagToEBooleanMap<canard.Flag, org.eclipse.emf.ecore.EString>"
+	 * @generated
+	 */
+	EMap<Flag, String> getConfigflags();
 
 } // Configuration

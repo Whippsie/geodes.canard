@@ -4,6 +4,7 @@ package canard.util;
 
 import canard.*;
 
+import java.util.Map;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 
@@ -80,14 +81,6 @@ public class CanardAdapterFactory extends AdapterFactoryImpl {
 				return createFlagAdapter();
 			}
 			@Override
-			public Adapter caseRelation(Relation object) {
-				return createRelationAdapter();
-			}
-			@Override
-			public Adapter caseAbstractFeature(AbstractFeature object) {
-				return createAbstractFeatureAdapter();
-			}
-			@Override
 			public Adapter caseBlock(Block object) {
 				return createBlockAdapter();
 			}
@@ -102,6 +95,14 @@ public class CanardAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseConfiguration(Configuration object) {
 				return createConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseConstraint(Constraint object) {
+				return createConstraintAdapter();
+			}
+			@Override
+			public Adapter caseFlagToEBooleanMap(Map.Entry<Flag, String> object) {
+				return createFlagToEBooleanMapAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -166,34 +167,6 @@ public class CanardAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link canard.Relation <em>Relation</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see canard.Relation
-	 * @generated
-	 */
-	public Adapter createRelationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link canard.AbstractFeature <em>Abstract Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see canard.AbstractFeature
-	 * @generated
-	 */
-	public Adapter createAbstractFeatureAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link canard.Block <em>Block</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -246,6 +219,34 @@ public class CanardAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link canard.Constraint <em>Constraint</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see canard.Constraint
+	 * @generated
+	 */
+	public Adapter createConstraintAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Flag To EBoolean Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Map.Entry
+	 * @generated
+	 */
+	public Adapter createFlagToEBooleanMapAdapter() {
 		return null;
 	}
 

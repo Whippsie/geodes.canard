@@ -8,26 +8,6 @@
     xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
   <nodes>
     <containmentFeature
-        href="canard.ecore#//CanardModel/features"/>
-    <ownedChild>
-      <domainMetaElement
-          href="canard.ecore#//Flag"/>
-      <labelMappings
-          xsi:type="gmfmap:FeatureLabelMapping">
-        <diagramLabel
-            href="canard.gmfgraph#FlagLabel"/>
-        <features
-            href="canard.ecore#//AbstractFeature/name"/>
-      </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="canard.gmftool#//@palette/@tools.0/@tools.2"/>
-      <diagramNode
-          href="canard.gmfgraph#Flag"/>
-    </ownedChild>
-  </nodes>
-  <nodes>
-    <containmentFeature
         href="canard.ecore#//CanardModel/blocks"/>
     <ownedChild>
       <domainMetaElement
@@ -41,7 +21,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="canard.gmftool#//@palette/@tools.0/@tools.1"/>
+          href="canard.gmftool#//@palette/@tools.0/@tools.0"/>
       <diagramNode
           href="canard.gmfgraph#Block"/>
       <children>
@@ -59,7 +39,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="canard.gmftool#//@palette/@tools.0/@tools.3"/>
+              href="canard.gmftool#//@palette/@tools.0/@tools.2"/>
           <diagramNode
               href="canard.gmfgraph#Topic"/>
         </ownedChild>
@@ -68,22 +48,22 @@
   </nodes>
   <nodes>
     <containmentFeature
-        href="canard.ecore#//CanardModel/features"/>
+        href="canard.ecore#//CanardModel/flags"/>
     <ownedChild>
       <domainMetaElement
-          href="canard.ecore#//AbstractFeature"/>
+          href="canard.ecore#//Flag"/>
       <labelMappings
           xsi:type="gmfmap:FeatureLabelMapping">
         <diagramLabel
-            href="canard.gmfgraph#AbstractFeatureLabel"/>
+            href="canard.gmfgraph#FlagLabel"/>
         <features
-            href="canard.ecore#//AbstractFeature/name"/>
+            href="canard.ecore#//Flag/name"/>
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="canard.gmftool#//@palette/@tools.0/@tools.0"/>
+          href="canard.gmftool#//@palette/@tools.0/@tools.1"/>
       <diagramNode
-          href="canard.gmfgraph#AbstractFeature"/>
+          href="canard.gmfgraph#Flag"/>
     </ownedChild>
   </nodes>
   <links>

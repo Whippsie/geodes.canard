@@ -257,4 +257,83 @@
   <blocks name="localization_node">
     <topics name="apriltags" uniqueID="137"/>
   </blocks>
+  <flags name="Undefined">
+    <child name="veh"/>
+    <child name="config"/>
+    <child name="param_file_name"/>
+    <child name="fsm_file_name"/>
+    <child name="statistics"/>
+    <child name="loc"/>
+    <child name="line_detector_param_file_name"/>
+    <child name="intersectionType"/>
+    <child name="odometry"/>
+    <child name="/odometry/forward_kinematics"/>
+    <child name="fsm"/>
+    <child name="odometry_learning"/>
+    <child name="/odometry_learning/kinematics"/>
+    <child name="/odometry_learning/learning"/>
+    <child name="/odometry_learning/visual_odometry"/>
+    <child name="parallel_autonomy"/>
+    <child name="global_localizer"/>
+    <child name="SLAM"/>
+  </flags>
+  <flags name="Apriltags">
+    <child name="apriltags_param_file_name"/>
+    <child name="apriltags"/>
+    <child name="/apriltags/local"/>
+    <child name="/navigation/apriltags_random"/>
+  </flags>
+  <flags name="Control">
+    <child name="visualization"/>
+    <child name="joystick"/>
+    <child name="/LED/joystick"/>
+    <child name="coordination"/>
+  </flags>
+  <flags name="Specific">
+    <child name="verbose"/>
+    <child name="map_name"/>
+    <child name="anti_instagram"/>
+    <child name="wheels"/>
+    <child name="LED"/>
+    <child name="/LED/pattern_switch"/>
+    <child name="/LED/detector"/>
+    <child name="/LED/emitter"/>
+    <child name="/LED/interpreter"/>
+    <child name="/localization/map_name"/>
+  </flags>
+  <flags name="Camera">
+    <child name="camera"/>
+    <child name="/camera/raw"/>
+    <child name="/camera/cam_info"/>
+    <child name="/camera/raw/rect"/>
+    <child name="/camera/local"/>
+  </flags>
+  <flags name="LaneFollowing">
+    <child name="lane_following"/>
+    <child name="/lane_following/line_detection"/>
+    <child name="/lane_following/ground_projection"/>
+    <child name="/lane_following/lane_filter"/>
+    <child name="/lane_following/stop_line_filter"/>
+    <child name="/lane_following/lane_controller"/>
+  </flags>
+  <flags name="Avoidance">
+    <child name="obstacle_avoidance"/>
+    <child name="/obstacle_avoidance/simple_stop"/>
+    <child name="/obstacle_avoidance/detection"/>
+    <child name="/obstacle_avoidance/safety"/>
+    <child name="vehicle_avoidance"/>
+    <child name="/vehicle_avoidance/detection"/>
+    <child name="/vehicle_avoidance/control"/>
+  </flags>
+  <flags name="Navigation">
+    <child name="navigation"/>
+    <child name="/navigation/intersection_control"/>
+    <child name="/navigation/random_sr_turns"/>
+    <child name="/navigation/graph_planner"/>
+  </flags>
+  <flags name="Localization">
+    <child name="localization"/>
+    <child name="/localization/local"/>
+    <child name="/localization/gui"/>
+  </flags>
 </canard:CanardModel>

@@ -1,60 +1,83 @@
 @gmf
 @namespace(uri="http://iro.umontreal.ca/canard", prefix="canard")
 package canard;
+
 @gmf.diagram
 class CanardModel {
   val Rel[*] links;
   val Block[*] blocks;
+  val Flag[*] flags;
+  val Constraint[*] constraints;
   val Configuration[*] configurations;
-  val AbstractFeature[*] features;
-  val Relation[*] relations;
 }
-
 
 @gmf.node(label="name", figure="rounded", color="250,229,150")
 class Topic {
-	attr String[1] name;
-	id attr int uniqueID;
+  attr String[1] name;
+  id attr int uniqueID;
 }
 
 @gmf.node(label="name")
-class Flag extends AbstractFeature {
-  attr FlagValues[1] value = "NAN";
+class Flag {
+  attr String name = "NAN";
+  val Flag[*] child;
+  attr Boolnull type;
+  attr boolean isAbstract;
 }
-class Relation {
-  attr String nameParent;
-}
-@gmf.node(label="name")
-class AbstractFeature {
-  id attr String[1] name;
-}
+
 @gmf.node(label="name", figure="rectangle", border.color="0,0,0", color="63,176,172", label.color="255,255,255")
 class Block {
   id attr String[1] name;
   val Attribute[*] attributes;
+
   @gmf.affixed
   val Topic[*] topics;
 }
+
 @gmf.link(label="name", source="src", target="tgt", target.decoration="arrow", width="2")
 class Rel {
   ref Topic[1] src;
   ref Topic[1] tgt;
   id attr String[1] name;
 }
+
 class Attribute {
   id attr String[1] name;
   !unique !ordered attr String value;
 }
+
 class Configuration {
-  ref Flag[*] flags;
+  attr String name;
+  val FlagToEBooleanMap[*] configflags;
 }
-enum FlagValues {
-  TRUE = 1;
-  FALSE = 0;
-  NAN = 2;
-}
+
 enum FeatureRelationType {
-  CHILD = 0;
   REQUIRES = 1;
   PROHIBITS = 2;
+  AND = 0;
+  OR = 0;
+  XOR = 0;
 }
+
+class Constraint {
+  attr FeatureRelationType feature;
+  ref Flag[*] cons_flags;
+}
+
+enum Boolnull {
+  TRUE = 0;
+  FALSE = 0;
+  NAN = 0;
+}
+
+enum ValueType {
+  Boolnull = 0;
+  String = 0;
+  List = 0;
+}
+
+class FlagToEBooleanMap : java.util.Map$Entry {
+  attr String value;
+  ref Flag key;
+}
+

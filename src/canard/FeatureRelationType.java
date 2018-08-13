@@ -19,16 +19,6 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum FeatureRelationType implements Enumerator {
 	/**
-	 * The '<em><b>CHILD</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CHILD_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CHILD(0, "CHILD", "CHILD"),
-
-	/**
 	 * The '<em><b>REQUIRES</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46,22 +36,31 @@ public enum FeatureRelationType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	PROHIBITS(2, "PROHIBITS", "PROHIBITS");
-
-	/**
-	 * The '<em><b>CHILD</b></em>' literal value.
+	PROHIBITS(2, "PROHIBITS", "PROHIBITS"), /**
+	 * The '<em><b>AND</b></em>' literal object.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>CHILD</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #CHILD
-	 * @model
+	 * @see #AND_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	public static final int CHILD_VALUE = 0;
+	AND(0, "AND", "AND"), /**
+	 * The '<em><b>OR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #OR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	OR(0, "OR", "OR"), /**
+	 * The '<em><b>XOR</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #XOR_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	XOR(0, "XOR", "XOR");
 
 	/**
 	 * The '<em><b>REQUIRES</b></em>' literal value.
@@ -94,6 +93,51 @@ public enum FeatureRelationType implements Enumerator {
 	public static final int PROHIBITS_VALUE = 2;
 
 	/**
+	 * The '<em><b>AND</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>AND</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #AND
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int AND_VALUE = 0;
+
+	/**
+	 * The '<em><b>OR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>OR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #OR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OR_VALUE = 0;
+
+	/**
+	 * The '<em><b>XOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>XOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #XOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int XOR_VALUE = 0;
+
+	/**
 	 * An array of all the '<em><b>Feature Relation Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,9 +145,11 @@ public enum FeatureRelationType implements Enumerator {
 	 */
 	private static final FeatureRelationType[] VALUES_ARRAY =
 		new FeatureRelationType[] {
-			CHILD,
 			REQUIRES,
 			PROHIBITS,
+			AND,
+			OR,
+			XOR,
 		};
 
 	/**
@@ -160,9 +206,9 @@ public enum FeatureRelationType implements Enumerator {
 	 */
 	public static FeatureRelationType get(int value) {
 		switch (value) {
-			case CHILD_VALUE: return CHILD;
 			case REQUIRES_VALUE: return REQUIRES;
 			case PROHIBITS_VALUE: return PROHIBITS;
+			case AND_VALUE: return AND;
 		}
 		return null;
 	}

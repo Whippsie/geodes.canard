@@ -49,24 +49,6 @@ public interface CanardFactory extends EFactory {
 	Flag createFlag();
 
 	/**
-	 * Returns a new object of class '<em>Relation</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Relation</em>'.
-	 * @generated
-	 */
-	Relation createRelation();
-
-	/**
-	 * Returns a new object of class '<em>Abstract Feature</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Abstract Feature</em>'.
-	 * @generated
-	 */
-	AbstractFeature createAbstractFeature();
-
-	/**
 	 * Returns a new object of class '<em>Block</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -101,6 +83,15 @@ public interface CanardFactory extends EFactory {
 	 * @generated
 	 */
 	Configuration createConfiguration();
+
+	/**
+	 * Returns a new object of class '<em>Constraint</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Constraint</em>'.
+	 * @generated
+	 */
+	Constraint createConstraint();
 
 	/**
 	 * Returns the package supported by this factory.

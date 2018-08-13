@@ -4,6 +4,7 @@ package canard.impl;
 
 import canard.*;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -60,12 +61,12 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 			case CanardPackage.CANARD_MODEL: return createCanardModel();
 			case CanardPackage.TOPIC: return createTopic();
 			case CanardPackage.FLAG: return createFlag();
-			case CanardPackage.RELATION: return createRelation();
-			case CanardPackage.ABSTRACT_FEATURE: return createAbstractFeature();
 			case CanardPackage.BLOCK: return createBlock();
 			case CanardPackage.REL: return createRel();
 			case CanardPackage.ATTRIBUTE: return createAttribute();
 			case CanardPackage.CONFIGURATION: return createConfiguration();
+			case CanardPackage.CONSTRAINT: return createConstraint();
+			case CanardPackage.FLAG_TO_EBOOLEAN_MAP: return (EObject)createFlagToEBooleanMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -79,10 +80,12 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case CanardPackage.FLAG_VALUES:
-				return createFlagValuesFromString(eDataType, initialValue);
 			case CanardPackage.FEATURE_RELATION_TYPE:
 				return createFeatureRelationTypeFromString(eDataType, initialValue);
+			case CanardPackage.BOOLNULL:
+				return createBoolnullFromString(eDataType, initialValue);
+			case CanardPackage.VALUE_TYPE:
+				return createValueTypeFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -96,10 +99,12 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case CanardPackage.FLAG_VALUES:
-				return convertFlagValuesToString(eDataType, instanceValue);
 			case CanardPackage.FEATURE_RELATION_TYPE:
 				return convertFeatureRelationTypeToString(eDataType, instanceValue);
+			case CanardPackage.BOOLNULL:
+				return convertBoolnullToString(eDataType, instanceValue);
+			case CanardPackage.VALUE_TYPE:
+				return convertValueTypeToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -133,26 +138,6 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 	public Flag createFlag() {
 		FlagImpl flag = new FlagImpl();
 		return flag;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Relation createRelation() {
-		RelationImpl relation = new RelationImpl();
-		return relation;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public AbstractFeature createAbstractFeature() {
-		AbstractFeatureImpl abstractFeature = new AbstractFeatureImpl();
-		return abstractFeature;
 	}
 
 	/**
@@ -200,10 +185,9 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FlagValues createFlagValuesFromString(EDataType eDataType, String initialValue) {
-		FlagValues result = FlagValues.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
+	public Constraint createConstraint() {
+		ConstraintImpl constraint = new ConstraintImpl();
+		return constraint;
 	}
 
 	/**
@@ -211,8 +195,9 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertFlagValuesToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
+	public Map.Entry<Flag, String> createFlagToEBooleanMap() {
+		FlagToEBooleanMapImpl flagToEBooleanMap = new FlagToEBooleanMapImpl();
+		return flagToEBooleanMap;
 	}
 
 	/**
@@ -232,6 +217,46 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 	 * @generated
 	 */
 	public String convertFeatureRelationTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Boolnull createBoolnullFromString(EDataType eDataType, String initialValue) {
+		Boolnull result = Boolnull.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertBoolnullToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ValueType createValueTypeFromString(EDataType eDataType, String initialValue) {
+		ValueType result = ValueType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertValueTypeToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

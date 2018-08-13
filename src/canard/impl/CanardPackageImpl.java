@@ -2,20 +2,21 @@
  */
 package canard.impl;
 
-import canard.AbstractFeature;
 import canard.Attribute;
 import canard.Block;
+import canard.Boolnull;
 import canard.CanardFactory;
 import canard.CanardModel;
 import canard.CanardPackage;
 import canard.Configuration;
+import canard.Constraint;
 import canard.FeatureRelationType;
 import canard.Flag;
-import canard.FlagValues;
 import canard.Rel;
-import canard.Relation;
 import canard.Topic;
 
+import canard.ValueType;
+import java.util.Map;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
@@ -57,20 +58,6 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass relationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass abstractFeatureEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass blockEClass = null;
 
 	/**
@@ -99,7 +86,14 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum flagValuesEEnum = null;
+	private EClass constraintEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass flagToEBooleanMapEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -107,6 +101,20 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * @generated
 	 */
 	private EEnum featureRelationTypeEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum boolnullEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum valueTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -201,7 +209,7 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCanardModel_Configurations() {
+	public EReference getCanardModel_Flags() {
 		return (EReference)canardModelEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -210,7 +218,7 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCanardModel_Features() {
+	public EReference getCanardModel_Constraints() {
 		return (EReference)canardModelEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -219,7 +227,7 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCanardModel_Relations() {
+	public EReference getCanardModel_Configurations() {
 		return (EReference)canardModelEClass.getEStructuralFeatures().get(4);
 	}
 
@@ -264,7 +272,7 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getFlag_Value() {
+	public EAttribute getFlag_Name() {
 		return (EAttribute)flagEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -273,8 +281,8 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getRelation() {
-		return relationEClass;
+	public EReference getFlag_Child() {
+		return (EReference)flagEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -282,8 +290,8 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRelation_NameParent() {
-		return (EAttribute)relationEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFlag_Type() {
+		return (EAttribute)flagEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -291,17 +299,8 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAbstractFeature() {
-		return abstractFeatureEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EAttribute getAbstractFeature_Name() {
-		return (EAttribute)abstractFeatureEClass.getEStructuralFeatures().get(0);
+	public EAttribute getFlag_IsAbstract() {
+		return (EAttribute)flagEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -417,8 +416,8 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConfiguration_Flags() {
-		return (EReference)configurationEClass.getEStructuralFeatures().get(0);
+	public EAttribute getConfiguration_Name() {
+		return (EAttribute)configurationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -426,8 +425,62 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getFlagValues() {
-		return flagValuesEEnum;
+	public EReference getConfiguration_Configflags() {
+		return (EReference)configurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConstraint() {
+		return constraintEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getConstraint_Feature() {
+		return (EAttribute)constraintEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConstraint_Cons_flags() {
+		return (EReference)constraintEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getFlagToEBooleanMap() {
+		return flagToEBooleanMapEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getFlagToEBooleanMap_Value() {
+		return (EAttribute)flagToEBooleanMapEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFlagToEBooleanMap_Key() {
+		return (EReference)flagToEBooleanMapEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -437,6 +490,24 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 */
 	public EEnum getFeatureRelationType() {
 		return featureRelationTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getBoolnull() {
+		return boolnullEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getValueType() {
+		return valueTypeEEnum;
 	}
 
 	/**
@@ -470,22 +541,19 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		canardModelEClass = createEClass(CANARD_MODEL);
 		createEReference(canardModelEClass, CANARD_MODEL__LINKS);
 		createEReference(canardModelEClass, CANARD_MODEL__BLOCKS);
+		createEReference(canardModelEClass, CANARD_MODEL__FLAGS);
+		createEReference(canardModelEClass, CANARD_MODEL__CONSTRAINTS);
 		createEReference(canardModelEClass, CANARD_MODEL__CONFIGURATIONS);
-		createEReference(canardModelEClass, CANARD_MODEL__FEATURES);
-		createEReference(canardModelEClass, CANARD_MODEL__RELATIONS);
 
 		topicEClass = createEClass(TOPIC);
 		createEAttribute(topicEClass, TOPIC__NAME);
 		createEAttribute(topicEClass, TOPIC__UNIQUE_ID);
 
 		flagEClass = createEClass(FLAG);
-		createEAttribute(flagEClass, FLAG__VALUE);
-
-		relationEClass = createEClass(RELATION);
-		createEAttribute(relationEClass, RELATION__NAME_PARENT);
-
-		abstractFeatureEClass = createEClass(ABSTRACT_FEATURE);
-		createEAttribute(abstractFeatureEClass, ABSTRACT_FEATURE__NAME);
+		createEAttribute(flagEClass, FLAG__NAME);
+		createEReference(flagEClass, FLAG__CHILD);
+		createEAttribute(flagEClass, FLAG__TYPE);
+		createEAttribute(flagEClass, FLAG__IS_ABSTRACT);
 
 		blockEClass = createEClass(BLOCK);
 		createEAttribute(blockEClass, BLOCK__NAME);
@@ -502,11 +570,21 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		createEAttribute(attributeEClass, ATTRIBUTE__VALUE);
 
 		configurationEClass = createEClass(CONFIGURATION);
-		createEReference(configurationEClass, CONFIGURATION__FLAGS);
+		createEAttribute(configurationEClass, CONFIGURATION__NAME);
+		createEReference(configurationEClass, CONFIGURATION__CONFIGFLAGS);
+
+		constraintEClass = createEClass(CONSTRAINT);
+		createEAttribute(constraintEClass, CONSTRAINT__FEATURE);
+		createEReference(constraintEClass, CONSTRAINT__CONS_FLAGS);
+
+		flagToEBooleanMapEClass = createEClass(FLAG_TO_EBOOLEAN_MAP);
+		createEAttribute(flagToEBooleanMapEClass, FLAG_TO_EBOOLEAN_MAP__VALUE);
+		createEReference(flagToEBooleanMapEClass, FLAG_TO_EBOOLEAN_MAP__KEY);
 
 		// Create enums
-		flagValuesEEnum = createEEnum(FLAG_VALUES);
 		featureRelationTypeEEnum = createEEnum(FEATURE_RELATION_TYPE);
+		boolnullEEnum = createEEnum(BOOLNULL);
+		valueTypeEEnum = createEEnum(VALUE_TYPE);
 	}
 
 	/**
@@ -537,28 +615,24 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		flagEClass.getESuperTypes().add(this.getAbstractFeature());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(canardModelEClass, CanardModel.class, "CanardModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCanardModel_Links(), this.getRel(), null, "links", null, 0, -1, CanardModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCanardModel_Blocks(), this.getBlock(), null, "blocks", null, 0, -1, CanardModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCanardModel_Flags(), this.getFlag(), null, "flags", null, 0, -1, CanardModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCanardModel_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, CanardModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCanardModel_Configurations(), this.getConfiguration(), null, "configurations", null, 0, -1, CanardModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCanardModel_Features(), this.getAbstractFeature(), null, "features", null, 0, -1, CanardModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getCanardModel_Relations(), this.getRelation(), null, "relations", null, 0, -1, CanardModel.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(topicEClass, Topic.class, "Topic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTopic_Name(), ecorePackage.getEString(), "name", null, 1, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTopic_UniqueID(), ecorePackage.getEInt(), "uniqueID", null, 0, 1, Topic.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(flagEClass, Flag.class, "Flag", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFlag_Value(), this.getFlagValues(), "value", "NAN", 1, 1, Flag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(relationEClass, Relation.class, "Relation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRelation_NameParent(), ecorePackage.getEString(), "nameParent", null, 0, 1, Relation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(abstractFeatureEClass, AbstractFeature.class, "AbstractFeature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAbstractFeature_Name(), ecorePackage.getEString(), "name", null, 1, 1, AbstractFeature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFlag_Name(), ecorePackage.getEString(), "name", "NAN", 0, 1, Flag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFlag_Child(), this.getFlag(), null, "child", null, 0, -1, Flag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFlag_Type(), this.getBoolnull(), "type", null, 0, 1, Flag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFlag_IsAbstract(), ecorePackage.getEBoolean(), "isAbstract", null, 0, 1, Flag.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(blockEClass, Block.class, "Block", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getBlock_Name(), ecorePackage.getEString(), "name", null, 1, 1, Block.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -575,18 +649,34 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		initEAttribute(getAttribute_Value(), ecorePackage.getEString(), "value", null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 
 		initEClass(configurationEClass, Configuration.class, "Configuration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConfiguration_Flags(), this.getFlag(), null, "flags", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getConfiguration_Name(), ecorePackage.getEString(), "name", null, 0, 1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConfiguration_Configflags(), this.getFlagToEBooleanMap(), null, "configflags", null, 0, -1, Configuration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(constraintEClass, Constraint.class, "Constraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getConstraint_Feature(), this.getFeatureRelationType(), "feature", null, 0, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConstraint_Cons_flags(), this.getFlag(), null, "cons_flags", null, 0, -1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(flagToEBooleanMapEClass, Map.Entry.class, "FlagToEBooleanMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getFlagToEBooleanMap_Value(), ecorePackage.getEString(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFlagToEBooleanMap_Key(), this.getFlag(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(flagValuesEEnum, FlagValues.class, "FlagValues");
-		addEEnumLiteral(flagValuesEEnum, FlagValues.TRUE);
-		addEEnumLiteral(flagValuesEEnum, FlagValues.FALSE);
-		addEEnumLiteral(flagValuesEEnum, FlagValues.NAN);
-
 		initEEnum(featureRelationTypeEEnum, FeatureRelationType.class, "FeatureRelationType");
-		addEEnumLiteral(featureRelationTypeEEnum, FeatureRelationType.CHILD);
 		addEEnumLiteral(featureRelationTypeEEnum, FeatureRelationType.REQUIRES);
 		addEEnumLiteral(featureRelationTypeEEnum, FeatureRelationType.PROHIBITS);
+		addEEnumLiteral(featureRelationTypeEEnum, FeatureRelationType.AND);
+		addEEnumLiteral(featureRelationTypeEEnum, FeatureRelationType.OR);
+		addEEnumLiteral(featureRelationTypeEEnum, FeatureRelationType.XOR);
+
+		initEEnum(boolnullEEnum, Boolnull.class, "Boolnull");
+		addEEnumLiteral(boolnullEEnum, Boolnull.TRUE);
+		addEEnumLiteral(boolnullEEnum, Boolnull.FALSE);
+		addEEnumLiteral(boolnullEEnum, Boolnull.NAN);
+
+		initEEnum(valueTypeEEnum, ValueType.class, "ValueType");
+		addEEnumLiteral(valueTypeEEnum, ValueType.BOOLNULL);
+		addEEnumLiteral(valueTypeEEnum, ValueType.STRING);
+		addEEnumLiteral(valueTypeEEnum, ValueType.LIST);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -652,12 +742,6 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		   });	
 		addAnnotation
 		  (flagEClass, 
-		   source, 
-		   new String[] {
-			 "label", "name"
-		   });	
-		addAnnotation
-		  (abstractFeatureEClass, 
 		   source, 
 		   new String[] {
 			 "label", "name"

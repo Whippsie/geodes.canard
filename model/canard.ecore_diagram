@@ -121,10 +121,6 @@
         <element xmi:type="ecore:EAttribute" href="canard.ecore#//Configuration/name"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_H9UkgZzGEeiiaPJi_9kY9Q"/>
       </children>
-      <children xmi:type="notation:Node" xmi:id="_VF3vIJzGEeiiaPJi_9kY9Q" type="3001">
-        <element xmi:type="ecore:EAttribute" href="canard.ecore#//Configuration/flagVal"/>
-        <layoutConstraint xmi:type="notation:Location" xmi:id="_VF3vIZzGEeiiaPJi_9kY9Q"/>
-      </children>
       <styles xmi:type="notation:SortingStyle" xmi:id="_mkmtXpy6EeiiaPJi_9kY9Q"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_mkmtX5y6EeiiaPJi_9kY9Q"/>
       <layoutConstraint xmi:type="notation:Ratio" xmi:id="_rdrUEJzFEeiiaPJi_9kY9Q" value="0.23076923076923078"/>
@@ -258,6 +254,27 @@
     <element xmi:type="ecore:EEnum" href="canard.ecore#//ValueType"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_svrckZzHEeiiaPJi_9kY9Q" x="840" y="312" width="85" height="109"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_3nPoYJ7-Eei5l6Z8JOx3Vw" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_3nQPcJ7-Eei5l6Z8JOx3Vw" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_3nQPcZ7-Eei5l6Z8JOx3Vw" type="7001">
+      <children xmi:type="notation:Node" xmi:id="_BLJAgJ7_Eei5l6Z8JOx3Vw" type="3001">
+        <element xmi:type="ecore:EAttribute" href="canard.ecore#//FlagToEBooleanMap/value"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_BLJAgZ7_Eei5l6Z8JOx3Vw"/>
+      </children>
+      <styles xmi:type="notation:SortingStyle" xmi:id="_3nQPcp7-Eei5l6Z8JOx3Vw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_3nQPc57-Eei5l6Z8JOx3Vw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_3nQ2gJ7-Eei5l6Z8JOx3Vw" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_3nQ2gZ7-Eei5l6Z8JOx3Vw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_3nQ2gp7-Eei5l6Z8JOx3Vw"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_3nQ2g57-Eei5l6Z8JOx3Vw" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_3nQ2hJ7-Eei5l6Z8JOx3Vw"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_3nQ2hZ7-Eei5l6Z8JOx3Vw"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="canard.ecore#//FlagToEBooleanMap"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3nPoYZ7-Eei5l6Z8JOx3Vw" x="372" y="516" width="109" height="85"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_mVi9oZy6EeiiaPJi_9kY9Q"/>
   <element xmi:type="ecore:EPackage" href="canard.ecore#/"/>
   <edges xmi:type="notation:Connector" xmi:id="_mngQUJy6EeiiaPJi_9kY9Q" type="4003" source="_mkcVQJy6EeiiaPJi_9kY9Q" target="_mklfPJy6EeiiaPJi_9kY9Q">
@@ -294,7 +311,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_moJJhpy6EeiiaPJi_9kY9Q" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_moJJgZy6EeiiaPJi_9kY9Q" fontName="Segoe UI"/>
-    <element xmi:type="ecore:EReference" href="canard.ecore#//CanardModel/configurations"/>
+    <element xmi:type="ecore:EReference" href="canard.ecore#//CanardModel/flags"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_moJJgpy6EeiiaPJi_9kY9Q" points="[0, 0, -114, -80]$[114, 80, 0, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mpw6JJy6EeiiaPJi_9kY9Q" id="(0.6632653061224489,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mpxhMJy6EeiiaPJi_9kY9Q" id="(0.5737704918032787,0.10975609756097561)"/>
@@ -351,19 +368,6 @@
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mpwTEJy6EeiiaPJi_9kY9Q" id="(0.5,1.0)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mpwTEZy6EeiiaPJi_9kY9Q" id="(0.6448598130841121,0.0)"/>
   </edges>
-  <edges xmi:type="notation:Connector" xmi:id="_molOYJy6EeiiaPJi_9kY9Q" type="4002" source="_mkmtWpy6EeiiaPJi_9kY9Q" target="_mkjqDJy6EeiiaPJi_9kY9Q">
-    <children xmi:type="notation:DecorationNode" xmi:id="_molOY5y6EeiiaPJi_9kY9Q" type="6001">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_molOZJy6EeiiaPJi_9kY9Q" x="-4" y="12"/>
-    </children>
-    <children xmi:type="notation:DecorationNode" xmi:id="_molOZZy6EeiiaPJi_9kY9Q" type="6003">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_molOZpy6EeiiaPJi_9kY9Q" x="-63" y="-11"/>
-    </children>
-    <styles xmi:type="notation:FontStyle" xmi:id="_molOYZy6EeiiaPJi_9kY9Q" fontName="Segoe UI"/>
-    <element xmi:type="ecore:EReference" href="canard.ecore#//Configuration/flags"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_molOYpy6EeiiaPJi_9kY9Q" points="[0, 0, 0, -74]$[0, 74, 0, 0]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mpyIQJy6EeiiaPJi_9kY9Q" id="(0.978494623655914,0.4423076923076923)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_mpyIQZy6EeiiaPJi_9kY9Q" id="(0.0,0.5487804878048781)"/>
-  </edges>
   <edges xmi:type="notation:Connector" xmi:id="_CYZY0JzFEeiiaPJi_9kY9Q" type="4003" source="_mkjqDJy6EeiiaPJi_9kY9Q" target="_mkjqDJy6EeiiaPJi_9kY9Q">
     <children xmi:type="notation:DecorationNode" xmi:id="_CYZ_4JzFEeiiaPJi_9kY9Q" type="6002">
       <layoutConstraint xmi:type="notation:Location" xmi:id="_CYZ_4ZzFEeiiaPJi_9kY9Q" y="40"/>
@@ -383,7 +387,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_ee_QE5zFEeiiaPJi_9kY9Q" x="-7" y="-25"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_ee-pAZzFEeiiaPJi_9kY9Q" fontName="Segoe UI"/>
-    <element xmi:type="ecore:EReference" href="canard.ecore#//CanardModel/%"/>
+    <element xmi:type="ecore:EReference" href="canard.ecore#//CanardModel/constraints"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_ee-pApzFEeiiaPJi_9kY9Q" points="[26, 30, -198, -220]$[206, 243, -18, -7]"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_efBFQJzFEeiiaPJi_9kY9Q" id="(0.1912568306010929,0.11864406779661017)"/>
   </edges>
@@ -395,7 +399,7 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_gv90NpzFEeiiaPJi_9kY9Q" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_gv90MZzFEeiiaPJi_9kY9Q" fontName="Segoe UI"/>
-    <element xmi:type="ecore:EReference" href="canard.ecore#//Constraint/%"/>
+    <element xmi:type="ecore:EReference" href="canard.ecore#//Constraint/cons_flags"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_gv90MpzFEeiiaPJi_9kY9Q" points="[0, 13, 96, -170]$[11, 183, 107, 0]$[-35, 183, 61, 0]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_gv_pYJzFEeiiaPJi_9kY9Q" id="(0.3333333333333333,0.7796610169491526)"/>
   </edges>
@@ -407,7 +411,18 @@
       <layoutConstraint xmi:type="notation:Location" xmi:id="_qfMSlpzFEeiiaPJi_9kY9Q" y="60"/>
     </children>
     <styles xmi:type="notation:FontStyle" xmi:id="_qfMSkZzFEeiiaPJi_9kY9Q" fontName="Segoe UI"/>
-    <element xmi:type="ecore:EReference" href="canard.ecore#//CanardModel/%.1"/>
+    <element xmi:type="ecore:EReference" href="canard.ecore#//CanardModel/configurations"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_qfMSkpzFEeiiaPJi_9kY9Q" points="[-3, 30, 39, -363]$[5, 396, 47, 3]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_qs6DcJ7_Eei5l6Z8JOx3Vw" type="4002" source="_3nPoYJ7-Eei5l6Z8JOx3Vw" target="_mkjqDJy6EeiiaPJi_9kY9Q">
+    <children xmi:type="notation:DecorationNode" xmi:id="_qs6qgJ7_Eei5l6Z8JOx3Vw" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_qs6qgZ7_Eei5l6Z8JOx3Vw" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_qs6qgp7_Eei5l6Z8JOx3Vw" type="6003">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_qs6qg57_Eei5l6Z8JOx3Vw" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_qs6DcZ7_Eei5l6Z8JOx3Vw" fontName="Segoe UI"/>
+    <element xmi:type="ecore:EReference" href="canard.ecore#//FlagToEBooleanMap/key"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_qs6Dcp7_Eei5l6Z8JOx3Vw" points="[55, -32, -200, 105]$[186, -129, -69, 8]"/>
   </edges>
 </notation:Diagram>
