@@ -164,7 +164,9 @@
   <blocks name="vehicle_detection_node">
     <topics name="detection" uniqueID="58"/>
   </blocks>
-  <blocks name="vehicle_avoidance_control_node&quot;"/>
+  <blocks name="vehicle_avoidance_control_node">
+    <topics name="detection" uniqueID="57"/>
+  </blocks>
   <blocks name="apriltag_detector_node"/>
   <blocks name="apriltags_postprocessing_node">
     <topics name="apriltags_in" uniqueID="61"/>

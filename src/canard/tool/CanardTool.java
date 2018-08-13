@@ -133,7 +133,7 @@ public class CanardTool {
 					     }
 					     String node = temp.substring(nodePos+1,(endInclude-1)-match.start()-1);
 					     node = node.replace(".launch", "");
-					     
+					     node = node.replace("\"", "");
 					     System.out.println("node : " +node);
 					     //nodes.add(node.replace(".launch", ""));
 						 model.getBlocks().add(makeBlock(node,factory));
