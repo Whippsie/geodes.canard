@@ -17,9 +17,11 @@ class Topic {
   id attr int uniqueID;
 }
 
-@gmf.node(label="name")
+@gmf.node(label="name",figure="rectangle", border.color="0,0,0")
 class Flag {
   attr String name = "NAN";
+  
+  @gmf.compartment
   val Flag[*] child;
   attr Boolnull type;
   attr boolean isAbstract;
@@ -46,6 +48,7 @@ class Attribute {
   !unique !ordered attr String value;
 }
 
+@gmf.node(label="name", figure="ellipse", border.color="0,0,0", color="255,242,15", label.color="255,255,255")
 class Configuration {
   attr String name;
   val FlagToEBooleanMap[*] configflags;

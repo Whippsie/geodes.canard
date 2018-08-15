@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see canard.CanardPackage#getConfiguration()
- * @model
+ * @model annotation="gmf.node label='name' figure='ellipse' border.color='0,0,0' color='255,242,15' label.color='255,255,255'"
  * @generated
  */
 public interface Configuration extends EObject {

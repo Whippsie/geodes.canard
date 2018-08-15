@@ -688,10 +688,12 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		createGmf_1Annotations();
 		// gmf.node
 		createGmf_2Annotations();
-		// gmf.affixed
+		// gmf.compartment
 		createGmf_3Annotations();
-		// gmf.link
+		// gmf.affixed
 		createGmf_4Annotations();
+		// gmf.link
+		createGmf_5Annotations();
 	}
 
 	/**
@@ -744,7 +746,9 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		  (flagEClass, 
 		   source, 
 		   new String[] {
-			 "label", "name"
+			 "label", "name",
+			 "figure", "rectangle",
+			 "border.color", "0,0,0"
 		   });	
 		addAnnotation
 		  (blockEClass, 
@@ -755,6 +759,31 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 			 "border.color", "0,0,0",
 			 "color", "63,176,172",
 			 "label.color", "255,255,255"
+		   });	
+		addAnnotation
+		  (configurationEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name",
+			 "figure", "ellipse",
+			 "border.color", "0,0,0",
+			 "color", "255,242,15",
+			 "label.color", "255,255,255"
+		   });
+	}
+
+	/**
+	 * Initializes the annotations for <b>gmf.compartment</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createGmf_3Annotations() {
+		String source = "gmf.compartment";	
+		addAnnotation
+		  (getFlag_Child(), 
+		   source, 
+		   new String[] {
 		   });
 	}
 
@@ -764,7 +793,7 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createGmf_3Annotations() {
+	protected void createGmf_4Annotations() {
 		String source = "gmf.affixed";	
 		addAnnotation
 		  (getBlock_Topics(), 
@@ -779,7 +808,7 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void createGmf_4Annotations() {
+	protected void createGmf_5Annotations() {
 		String source = "gmf.link";	
 		addAnnotation
 		  (relEClass, 

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -19,15 +20,17 @@ import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import canard.Block;
 import canard.CanardFactory;
 import canard.CanardModel;
+import canard.Configuration;
+import canard.Flag;
 import canard.Rel;
 import canard.Topic;
 
 public class CanardTool {
 	public static final String INPUTLAUNCH = "input/master.launch";
-	public static final String OUTPUTFILE =  "output/withconfig.canard";
+	public static final String OUTPUTFILE =  "output/masterwithconfig.canard";
 	public static int uniqueID = 0;
-	private static CanardModel model;
-	private static CanardFactory factory;
+	public static CanardModel model;
+	public static CanardFactory factory;
 	
 	private static Block makeBlock(String name, CanardFactory factory){
 		//TODO: Not sure of this code, should use array or map to dynamically modify the name of the variables
@@ -46,7 +49,7 @@ public class CanardTool {
 		}
 		return text;
 	}
-	
+	/*
 	private static void getGroups(String text){
 		int posIncl = text.indexOf("<include");
 		int posGroup = text.indexOf("<group");
@@ -109,6 +112,110 @@ public class CanardTool {
 			}
 		}
 	}
+	*/
+	//http://www.java2s.com/Tutorial/Java/0040__Data-Type/Getstheminimumofthreeintvalues.htm
+	public static int minimum(int a, int b, int c) {
+	      if (b < a) {
+	          a = b;
+	      }
+	      if (c < a) {
+	          a = c;
+	      }
+	      return a;
+	}
+	
+	private static void getGroupsV2(String text, Configuration config){
+		int posIncl = text.indexOf("<include");
+		int posGroup = text.indexOf("<group");
+		int posRemap = text.indexOf("<remap");
+		int posArg = text.indexOf("<arg");
+		
+		int firstMin = minimum (posIncl, posGroup, posRemap);
+		if (config == null){
+			//On coupe le texte pour gérer les args seulement
+			String argText = text.substring(posArg,firstMin-1);
+			config = GenConfig.genConfigText(argText);
+		}
+		//Si on a des args avant tout autre élément
+		if (posArg < firstMin){
+			//TODO : Faire des choses
+
+		}
+		//Si on a des include ou des remap avant les group
+		//Ou que carrement pas de groupe
+		if (firstMin < posGroup || posGroup < 0){
+			String tempText = text;
+			if (posGroup >= 0){
+				tempText = text.substring(0,posGroup);
+			}
+			//On les exécute d'abord
+			exeInclude(tempText);
+			relationsFromLaunch(tempText);
+		}
+		String wordToFind = "group";
+		Pattern word = Pattern.compile(wordToFind);
+		Matcher match = word.matcher(text);
+		int cptGroup = 0 ;
+		int totalGroups = 0;
+		int debutGroupe = -1 ;
+		while (match.find()) {
+			if (debutGroupe == -1){
+				debutGroupe = match.start()-1;
+			}
+			if (text.charAt(match.start()-1) == '<'){
+				//On ouvre un groupe
+				cptGroup ++;
+				totalGroups ++;
+			}else{
+				//On ferme un groupe
+				cptGroup --;
+			}
+			if (cptGroup == 0){
+				//On ferme un groupe premier niveau
+				//On va gérer les noeuds dans le groupe via la position
+				int finGroupe = match.end()+1;
+				String groupText = text.substring(debutGroupe,finGroupe);
+				//System.out.println("=========================== " );
+				//System.out.println("the supposingly groupText : " + groupText);
+				//System.out.println("=========================== " );
+				//Doit verifier si l'argument est valide
+				int posiArg = groupText.indexOf("arg");
+				posiArg += 4; //$(arg camera)">
+				int posEndArg = groupText.indexOf(">");
+				String arg = groupText.substring(posiArg,posEndArg-2);
+				/*
+				if (arg.equals("/camera/raw")){
+					System.out.println("=================================================================================");
+					System.out.println("the supposingly groupText : " + groupText);
+					System.out.println("=================================================================================");
+					System.out.println("the supposingly groupText : " + text);
+				}
+				*/
+				Flag f = FlagsBase.getFlagByName(arg);
+				EMap<Flag,String> mapping = config.getConfigflags();
+				
+				//Si, dans cette config, l'argument vaut vrai
+				//On exécute le group if
+				String test = mapping.get(f);
+				if (mapping.get(f).equals("true")){
+					String subgroupText = text.substring(debutGroupe+posEndArg,finGroupe-8);
+					//System.out.println("=========================== " );
+					//System.out.println("before sending recursively : " + subgroupText);
+					//System.out.println("=========================== " );
+					//Si aucun groupe on a déjà exécuté les nodes et remap
+					if (totalGroups == 0){
+						return;
+					}else{
+						getGroupsV2(subgroupText, config);
+						totalGroups = 0;
+						debutGroupe = -1;
+					}
+				}else{
+					debutGroupe = -1;
+				}
+			}
+		}
+	}
 	
 	static ArrayList<String> nodes = new ArrayList<String>();
 	private static void exeInclude(String text){
@@ -134,9 +241,14 @@ public class CanardTool {
 					     String node = temp.substring(nodePos+1,(endInclude-1)-match.start()-1);
 					     node = node.replace(".launch", "");
 					     node = node.replace("\"", "");
-					     System.out.println("node : " +node);
+					     if(node.equals("joy_node")){
+					    	 System.out.println("on est in");
+					     }
 					     //nodes.add(node.replace(".launch", ""));
-						 model.getBlocks().add(makeBlock(node,factory));
+					     if (getBlockFromName(node)==null){
+					    	 System.out.println("node : " +node);
+					    	 model.getBlocks().add(makeBlock(node,factory));
+					     }
 						 
 						 //TODO : Doit appeler une autre fonction pour faire les config des flags
 				     }
@@ -145,7 +257,7 @@ public class CanardTool {
 	
 	private static void nodesFromLaunch(){
 		String text = readFile();
-		getGroups(text);
+		getGroupsV2(text,null);
 		
 		
 	}
@@ -172,10 +284,12 @@ public class CanardTool {
 	     Topic currTopic = null;
 	     //TODO : Else, On a un remap sans node, quoi faire?
 	     if (nodeTopic.length != 1){
-	    	 currTopic = getTopicFromName(nodeTopic[1],currBlock);
+	    	 //Ici peut vouloir concat au cas où on a /image/compressed, le topic est compressed ou image/compressed?
+	    	 String topicName = concat(nodeTopic);
+	    	 currTopic = getTopicFromName(topicName,currBlock);
 		     if (currTopic == null){
 		    	 currTopic = factory.createTopic();
-			     currTopic.setName(nodeTopic[1]);
+			     currTopic.setName(topicName);
 			     incrementID();
 			     currTopic.setUniqueID(uniqueID);
 		     }
@@ -184,15 +298,21 @@ public class CanardTool {
 	     
 	     return currTopic;
 	}
-	
-		private static Topic getTopicFromName(String name, Block b){
-				for (Topic top : b.getTopics()){
-					if (top.getName().equals(name)){
-						return top;
-					}
-				}
-			return null;
+	private static String concat(String[] toConcat){
+		String result = "";
+		for (int i=1;i<toConcat.length;i++){
+			result += toConcat[i] + "/";
 		}
+		return result.substring(0,result.length()-1);
+	}
+	private static Topic getTopicFromName(String name, Block b){
+			for (Topic top : b.getTopics()){
+				if (top.getName().equals(name)){
+					return top;
+				}
+			}
+		return null;
+	}
 	private static boolean checkComment(String text, int pos){
 		String comment = "<!--";
 		String textval = "";
@@ -263,7 +383,7 @@ public class CanardTool {
 	public static void main(String[] args) throws IOException {
 		factory = CanardFactory.eINSTANCE;
 		model = factory.createCanardModel();
-		FlagsBase.generateFlags(factory, model);
+		//FlagsBase.generateFlags(factory, model);
 		//Create blocks
 		nodesFromLaunch();
 
@@ -271,7 +391,7 @@ public class CanardTool {
 		//Create relations
 		//relationsFromLaunch();
 		
-		GenConfig.genConfig(model, factory);
+		//GenConfig.genConfig(model, factory);
 		XMIExporter.export(model, OUTPUTFILE);
 
 

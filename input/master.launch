@@ -88,7 +88,6 @@
 	<arg name="global_localizer" default="false"/>
 
 	<arg name="SLAM" default="false"/>
-
 	<arg name="localization" default="false"/>
 	<arg name="/localization/local" default="false" />
 	<arg name="/localization/map_name" default="open_house_dp6" />

@@ -1,5 +1,5 @@
 package canard.tool;
-
+import canard.tool.CanardTool;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class FlagsBase {
 		return flagInfo;
 	}
 	
-	public static void generateFlags(CanardFactory factory,CanardModel model){
+	public static void generateFlags(){
 		initDict();		
 		BufferedReader reader;
 		try {
@@ -46,18 +46,18 @@ public class FlagsBase {
 				System.out.println(line);
 				String flagname = getArgInfo(line, "name=");
 				String category = findCategory(flagname);
-				Flag catFlag = getFlagByName(category, model);
+				Flag catFlag = getFlagByName(category);
 				if (catFlag == null){
 					//Category doesn't exist yet, must create it
-					catFlag = makeFlag(category, factory, true);
-					model.getFlags().add(catFlag);
+					catFlag = makeFlag(category, true);
+					CanardTool.model.getFlags().add(catFlag);
 				}
 				
 				//Create arg flag
-				Flag currFlag = makeFlag(flagname, factory, false);
+				Flag currFlag = makeFlag(flagname,false);
 				
 				//Add flags to the model
-				model.getFlags().add(currFlag);
+				CanardTool.model.getFlags().add(currFlag);
 				
 				//Link category and flag
 				catFlag.getChild().add(currFlag);
@@ -69,9 +69,30 @@ public class FlagsBase {
 			e.printStackTrace();
 		}
 	}
+	public static void generateFlagsText( String text){
+		initDict();		
+		String flagname = getArgInfo(text, "name=");
+		String category = findCategory(flagname);
+		Flag catFlag = getFlagByName(category);
+		if (catFlag == null){
+			//Category doesn't exist yet, must create it
+			catFlag = makeFlag(category,true);
+			CanardTool.model.getFlags().add(catFlag);
+		}
+		
+		//Create arg flag
+		Flag currFlag = makeFlag(flagname, false);
+		
+		//Add flags to the model
+		CanardTool.model.getFlags().add(currFlag);
+		
+		//Link category and flag
+		catFlag.getChild().add(currFlag);
+
+	}
 	
-	public static Flag getFlagByName(String flagName,CanardModel model){
-		for (Flag f : model.getFlags()){
+	public static Flag getFlagByName(String flagName){
+		for (Flag f : CanardTool.model.getFlags()){
 			if (f.getName().equals(flagName)){
 				return f;
 			}
@@ -150,8 +171,8 @@ public class FlagsBase {
 		i++;
 
 	}
-	private static Flag makeFlag(String flagName,CanardFactory factory, boolean abstractVal){
-		Flag f1 = factory.createFlag();
+	private static Flag makeFlag(String flagName,boolean abstractVal){
+		Flag f1 = CanardTool.factory.createFlag();
 		//String search = "name=\"";
 		//int posArg = line.indexOf(search) + search.length();
 		

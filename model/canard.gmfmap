@@ -39,7 +39,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="canard.gmftool#//@palette/@tools.0/@tools.2"/>
+              href="canard.gmftool#//@palette/@tools.0/@tools.3"/>
           <diagramNode
               href="canard.gmfgraph#Topic"/>
         </ownedChild>
@@ -49,7 +49,8 @@
   <nodes>
     <containmentFeature
         href="canard.ecore#//CanardModel/flags"/>
-    <ownedChild>
+    <ownedChild
+        relatedDiagrams="//@diagram">
       <domainMetaElement
           href="canard.ecore#//Flag"/>
       <labelMappings
@@ -61,9 +62,40 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="canard.gmftool#//@palette/@tools.0/@tools.1"/>
+          href="canard.gmftool#//@palette/@tools.0/@tools.2"/>
       <diagramNode
           href="canard.gmfgraph#Flag"/>
+      <children
+          compartment="//@nodes.1/@ownedChild/@compartments.0"
+          referencedChild="//@nodes.1/@ownedChild">
+        <containmentFeature
+            href="canard.ecore#//Flag/child"/>
+      </children>
+      <compartments
+          children="//@nodes.1/@ownedChild/@children.0">
+        <compartment
+            href="canard.gmfgraph#FlagChildCompartment"/>
+      </compartments>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="canard.ecore#//CanardModel/configurations"/>
+    <ownedChild>
+      <domainMetaElement
+          href="canard.ecore#//Configuration"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="canard.gmfgraph#ConfigurationLabel"/>
+        <features
+            href="canard.ecore#//Configuration/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="canard.gmftool#//@palette/@tools.0/@tools.1"/>
+      <diagramNode
+          href="canard.gmfgraph#Configuration"/>
     </ownedChild>
   </nodes>
   <links>

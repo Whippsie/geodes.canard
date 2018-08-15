@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see canard.CanardPackage#getFlag()
- * @model annotation="gmf.node label='name'"
+ * @model annotation="gmf.node label='name' figure='rectangle' border.color='0,0,0'"
  * @generated
  */
 public interface Flag extends EObject {

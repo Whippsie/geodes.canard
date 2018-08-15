@@ -13,13 +13,18 @@
       <accessors accessor="getFigureTopicLabelFigure" figure="//@figures.0/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
     <descriptors name="FlagFigure">
-      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="FlagFigure">
+      <actualFigure xsi:type="gmfgraph:Rectangle" name="FlagFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
         <border xsi:type="gmfgraph:MarginBorder">
           <insets top="5" left="5" bottom="5" right="5"/>
         </border>
-        <children xsi:type="gmfgraph:Label" name="FlagLabelFigure" text="Flag"/>
+        <children xsi:type="gmfgraph:Label" name="FlagLabelFigure" text="Flag">
+          <maximumSize dx="10000" dy="50"/>
+        </children>
+        <children xsi:type="gmfgraph:Rectangle" name="FlagChildCompartmentFigure" outline="false"/>
       </actualFigure>
       <accessors accessor="getFigureFlagLabelFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.0"/>
+      <accessors accessor="getFlagChildCompartmentFigure" figure="//@figures.0/@descriptors.1/@actualFigure/@children.1"/>
     </descriptors>
     <descriptors name="BlockFigure">
       <actualFigure xsi:type="gmfgraph:Rectangle" name="BlockFigure">
@@ -32,6 +37,17 @@
       </actualFigure>
       <accessors accessor="getFigureBlockLabelFigure" figure="//@figures.0/@descriptors.2/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors name="ConfigurationFigure">
+      <actualFigure xsi:type="gmfgraph:Ellipse" name="ConfigurationFigure">
+        <foregroundColor xsi:type="gmfgraph:RGBColor"/>
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="255" green="242" blue="15"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="ConfigurationLabelFigure" text="Configuration"/>
+      </actualFigure>
+      <accessors accessor="getFigureConfigurationLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
+    </descriptors>
     <descriptors name="RelFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RelFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.0"/>
     </descriptors>
@@ -42,9 +58,12 @@
   <nodes name="Topic" figure="TopicFigure" affixedParentSide="NORTH"/>
   <nodes name="Flag" figure="FlagFigure"/>
   <nodes name="Block" figure="BlockFigure"/>
+  <nodes name="Configuration" figure="ConfigurationFigure"/>
   <connections name="Rel" figure="RelFigure"/>
+  <compartments name="FlagChildCompartment" figure="FlagFigure" collapsible="true" accessor="//@figures.0/@descriptors.1/@accessors.1"/>
   <labels name="TopicLabel" figure="TopicFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
   <labels name="FlagLabel" figure="FlagFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels name="BlockLabel" figure="BlockFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
+  <labels name="ConfigurationLabel" figure="ConfigurationFigure" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
   <labels name="RelLabel" figure="RelLabelFigure" elementIcon="false"/>
 </gmfgraph:Canvas>

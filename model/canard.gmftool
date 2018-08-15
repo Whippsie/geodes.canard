@@ -21,6 +21,15 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
+          title="Configuration"
+          description="Create new Configuration">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+        <largeIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
           title="Flag"
           description="Create new Flag">
         <smallIcon
