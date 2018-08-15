@@ -67,6 +67,7 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 			case CanardPackage.CONFIGURATION: return createConfiguration();
 			case CanardPackage.CONSTRAINT: return createConstraint();
 			case CanardPackage.FLAG_TO_EBOOLEAN_MAP: return (EObject)createFlagToEBooleanMap();
+			case CanardPackage.BAD_TOPIC: return createBadTopic();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -198,6 +199,16 @@ public class CanardFactoryImpl extends EFactoryImpl implements CanardFactory {
 	public Map.Entry<Flag, String> createFlagToEBooleanMap() {
 		FlagToEBooleanMapImpl flagToEBooleanMap = new FlagToEBooleanMapImpl();
 		return flagToEBooleanMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BadTopic createBadTopic() {
+		BadTopicImpl badTopic = new BadTopicImpl();
+		return badTopic;
 	}
 
 	/**

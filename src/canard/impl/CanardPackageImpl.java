@@ -3,6 +3,7 @@
 package canard.impl;
 
 import canard.Attribute;
+import canard.BadTopic;
 import canard.Block;
 import canard.Boolnull;
 import canard.CanardFactory;
@@ -94,6 +95,13 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * @generated
 	 */
 	private EClass flagToEBooleanMapEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass badTopicEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -488,6 +496,15 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getBadTopic() {
+		return badTopicEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getFeatureRelationType() {
 		return featureRelationTypeEEnum;
 	}
@@ -581,6 +598,8 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		createEAttribute(flagToEBooleanMapEClass, FLAG_TO_EBOOLEAN_MAP__VALUE);
 		createEReference(flagToEBooleanMapEClass, FLAG_TO_EBOOLEAN_MAP__KEY);
 
+		badTopicEClass = createEClass(BAD_TOPIC);
+
 		// Create enums
 		featureRelationTypeEEnum = createEEnum(FEATURE_RELATION_TYPE);
 		boolnullEEnum = createEEnum(BOOLNULL);
@@ -615,6 +634,7 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		badTopicEClass.getESuperTypes().add(this.getTopic());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(canardModelEClass, CanardModel.class, "CanardModel", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -659,6 +679,8 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 		initEClass(flagToEBooleanMapEClass, Map.Entry.class, "FlagToEBooleanMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFlagToEBooleanMap_Value(), ecorePackage.getEString(), "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFlagToEBooleanMap_Key(), this.getFlag(), null, "key", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(badTopicEClass, BadTopic.class, "BadTopic", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
 		initEEnum(featureRelationTypeEEnum, FeatureRelationType.class, "FeatureRelationType");
@@ -769,6 +791,14 @@ public class CanardPackageImpl extends EPackageImpl implements CanardPackage {
 			 "border.color", "0,0,0",
 			 "color", "255,242,15",
 			 "label.color", "255,255,255"
+		   });	
+		addAnnotation
+		  (badTopicEClass, 
+		   source, 
+		   new String[] {
+			 "label", "name",
+			 "figure", "rounded",
+			 "color", "231,57,23"
 		   });
 	}
 

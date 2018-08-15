@@ -21,9 +21,29 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="canard.gmftool#//@palette/@tools.0/@tools.0"/>
+          href="canard.gmftool#//@palette/@tools.0/@tools.1"/>
       <diagramNode
           href="canard.gmfgraph#Block"/>
+      <children>
+        <containmentFeature
+            href="canard.ecore#//Block/topics"/>
+        <ownedChild>
+          <domainMetaElement
+              href="canard.ecore#//BadTopic"/>
+          <labelMappings
+              xsi:type="gmfmap:FeatureLabelMapping">
+            <diagramLabel
+                href="canard.gmfgraph#BadTopicLabel"/>
+            <features
+                href="canard.ecore#//Topic/name"/>
+          </labelMappings>
+          <tool
+              xsi:type="gmftool:CreationTool"
+              href="canard.gmftool#//@palette/@tools.0/@tools.0"/>
+          <diagramNode
+              href="canard.gmfgraph#BadTopic"/>
+        </ownedChild>
+      </children>
       <children>
         <containmentFeature
             href="canard.ecore#//Block/topics"/>
@@ -39,7 +59,7 @@
           </labelMappings>
           <tool
               xsi:type="gmftool:CreationTool"
-              href="canard.gmftool#//@palette/@tools.0/@tools.3"/>
+              href="canard.gmftool#//@palette/@tools.0/@tools.4"/>
           <diagramNode
               href="canard.gmfgraph#Topic"/>
         </ownedChild>
@@ -62,7 +82,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="canard.gmftool#//@palette/@tools.0/@tools.2"/>
+          href="canard.gmftool#//@palette/@tools.0/@tools.3"/>
       <diagramNode
           href="canard.gmfgraph#Flag"/>
       <children
@@ -93,7 +113,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="canard.gmftool#//@palette/@tools.0/@tools.1"/>
+          href="canard.gmftool#//@palette/@tools.0/@tools.2"/>
       <diagramNode
           href="canard.gmfgraph#Configuration"/>
     </ownedChild>

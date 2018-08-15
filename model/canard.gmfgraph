@@ -48,6 +48,16 @@
       </actualFigure>
       <accessors accessor="getFigureConfigurationLabelFigure" figure="//@figures.0/@descriptors.3/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors name="BadTopicFigure">
+      <actualFigure xsi:type="gmfgraph:RoundedRectangle" name="BadTopicFigure">
+        <backgroundColor xsi:type="gmfgraph:RGBColor" red="231" green="57" blue="23"/>
+        <border xsi:type="gmfgraph:MarginBorder">
+          <insets top="5" left="5" bottom="5" right="5"/>
+        </border>
+        <children xsi:type="gmfgraph:Label" name="BadTopicLabelFigure" text="BadTopic"/>
+      </actualFigure>
+      <accessors accessor="getFigureBadTopicLabelFigure" figure="//@figures.0/@descriptors.4/@actualFigure/@children.0"/>
+    </descriptors>
     <descriptors name="RelFigure">
       <actualFigure xsi:type="gmfgraph:PolylineConnection" name="RelFigure" lineWidth="2" targetDecoration="//@figures.0/@figures.0"/>
     </descriptors>
@@ -59,11 +69,13 @@
   <nodes name="Flag" figure="FlagFigure"/>
   <nodes name="Block" figure="BlockFigure"/>
   <nodes name="Configuration" figure="ConfigurationFigure"/>
+  <nodes name="BadTopic" figure="BadTopicFigure" affixedParentSide="NORTH"/>
   <connections name="Rel" figure="RelFigure"/>
   <compartments name="FlagChildCompartment" figure="FlagFigure" collapsible="true" accessor="//@figures.0/@descriptors.1/@accessors.1"/>
   <labels name="TopicLabel" figure="TopicFigure" accessor="//@figures.0/@descriptors.0/@accessors.0"/>
   <labels name="FlagLabel" figure="FlagFigure" accessor="//@figures.0/@descriptors.1/@accessors.0"/>
   <labels name="BlockLabel" figure="BlockFigure" accessor="//@figures.0/@descriptors.2/@accessors.0"/>
   <labels name="ConfigurationLabel" figure="ConfigurationFigure" accessor="//@figures.0/@descriptors.3/@accessors.0"/>
+  <labels name="BadTopicLabel" figure="BadTopicFigure" accessor="//@figures.0/@descriptors.4/@accessors.0"/>
   <labels name="RelLabel" figure="RelLabelFigure" elementIcon="false"/>
 </gmfgraph:Canvas>

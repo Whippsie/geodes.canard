@@ -453,6 +453,43 @@ public interface CanardPackage extends EPackage {
 	int FLAG_TO_EBOOLEAN_MAP_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link canard.impl.BadTopicImpl <em>Bad Topic</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see canard.impl.BadTopicImpl
+	 * @see canard.impl.CanardPackageImpl#getBadTopic()
+	 * @generated
+	 */
+	int BAD_TOPIC = 9;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAD_TOPIC__NAME = TOPIC__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Unique ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAD_TOPIC__UNIQUE_ID = TOPIC__UNIQUE_ID;
+
+	/**
+	 * The number of structural features of the '<em>Bad Topic</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAD_TOPIC_FEATURE_COUNT = TOPIC_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link canard.FeatureRelationType <em>Feature Relation Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -460,7 +497,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getFeatureRelationType()
 	 * @generated
 	 */
-	int FEATURE_RELATION_TYPE = 9;
+	int FEATURE_RELATION_TYPE = 10;
 
 
 	/**
@@ -471,7 +508,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getBoolnull()
 	 * @generated
 	 */
-	int BOOLNULL = 10;
+	int BOOLNULL = 11;
 
 	/**
 	 * The meta object id for the '{@link canard.ValueType <em>Value Type</em>}' enum.
@@ -481,7 +518,7 @@ public interface CanardPackage extends EPackage {
 	 * @see canard.impl.CanardPackageImpl#getValueType()
 	 * @generated
 	 */
-	int VALUE_TYPE = 11;
+	int VALUE_TYPE = 12;
 
 
 	/**
@@ -853,6 +890,16 @@ public interface CanardPackage extends EPackage {
 	EReference getFlagToEBooleanMap_Key();
 
 	/**
+	 * Returns the meta object for class '{@link canard.BadTopic <em>Bad Topic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Bad Topic</em>'.
+	 * @see canard.BadTopic
+	 * @generated
+	 */
+	EClass getBadTopic();
+
+	/**
 	 * Returns the meta object for enum '{@link canard.FeatureRelationType <em>Feature Relation Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1193,6 +1240,16 @@ public interface CanardPackage extends EPackage {
 		 * @generated
 		 */
 		EReference FLAG_TO_EBOOLEAN_MAP__KEY = eINSTANCE.getFlagToEBooleanMap_Key();
+
+		/**
+		 * The meta object literal for the '{@link canard.impl.BadTopicImpl <em>Bad Topic</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see canard.impl.BadTopicImpl
+		 * @see canard.impl.CanardPackageImpl#getBadTopic()
+		 * @generated
+		 */
+		EClass BAD_TOPIC = eINSTANCE.getBadTopic();
 
 		/**
 		 * The meta object literal for the '{@link canard.FeatureRelationType <em>Feature Relation Type</em>}' enum.

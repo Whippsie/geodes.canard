@@ -265,30 +265,29 @@ public class CanardTool {
 		uniqueID+=1;
 	}
 	
-	private static Topic linkTopicToBlock(String from){
-		String[] nodeTopic = from.split("/");
-	     
-	     //TODO : decide what to do with the $
-	     for (int i =0; i<nodeTopic.length;i++){
-	    	 if (nodeTopic[i].contains("$")){
-	    		 return null;
-	    	 }
-	     }
-	    Block currBlock = getBlockFromName(nodeTopic[0]);
+	//0 topic, 1 bad topic
+	private static Topic linkTopicToBlock(String line, int topicType){
+		String[] lineSplit = line.split("/");
+	    Block currBlock = getBlockFromName(lineSplit[0]);
 	     
 	     //Pour gerer le cas ou un noeud pas include, mais remap
-	     if (currBlock == null && nodeTopic[0].contains("node")){
-	    	 currBlock = makeBlock(nodeTopic[0],factory);
+	     if (currBlock == null && lineSplit[0].contains("node")){
+	    	 currBlock = makeBlock(lineSplit[0],factory);
 	     }
 	     
 	     Topic currTopic = null;
 	     //TODO : Else, On a un remap sans node, quoi faire?
-	     if (nodeTopic.length != 1){
+	     if (lineSplit.length != 1){
 	    	 //Ici peut vouloir concat au cas où on a /image/compressed, le topic est compressed ou image/compressed?
-	    	 String topicName = concat(nodeTopic);
+	    	 String topicName = getTopicName(line);
 	    	 currTopic = getTopicFromName(topicName,currBlock);
 		     if (currTopic == null){
-		    	 currTopic = factory.createTopic();
+		    	 
+		    	 if (topicType == 0){
+		    		 currTopic = factory.createTopic();
+		    	 }else{
+		    		 currTopic = factory.createBadTopic();
+		    	 }
 			     currTopic.setName(topicName);
 			     incrementID();
 			     currTopic.setUniqueID(uniqueID);
@@ -348,12 +347,23 @@ public class CanardTool {
 			     
 			     from = temp.substring(fromPos+6,toPos-2);
 			     from = from.replace("\"", "");
-			     Topic tfrom = linkTopicToBlock(from);
-			     
 			     int endPos = temp.lastIndexOf("\"");
 			     to = temp.substring(toPos+4,endPos);
 			     to = to.replace("\"", "");
-			     Topic tto = linkTopicToBlock(to);
+			     
+			     String nametfrom = getTopicName(from);
+			     String nametto = getTopicName(to);
+			     
+			     Topic tfrom = null;
+			     Topic tto = null;
+			     if (!nametfrom.equals(nametto)){
+				     tfrom = linkTopicToBlock(from,1);
+				     tto = linkTopicToBlock(to,1);
+			     }else{
+				     tfrom = linkTopicToBlock(from,0);
+				     tto = linkTopicToBlock(to,0);
+			     }
+
 	
 			     if (tfrom != null && tto != null){
 				     System.out.println("from : "+from);
@@ -367,6 +377,22 @@ public class CanardTool {
 
 		}
 		
+	}
+	private static String getTopicName(String line){
+		String[] nodeTopic = line.split("/");
+	     
+	     //TODO : decide what to do with the $
+	     for (int i =0; i<nodeTopic.length;i++){
+	    	 if (nodeTopic[i].contains("$")){
+	    		 return null;
+	    	 }
+	     }
+	     String val = "";
+	     if (nodeTopic.length > 2){
+	    	 return concat(nodeTopic);
+	     }else{
+	    	 return nodeTopic[1];
+	     }
 	}
 	private static Block getBlockFromName(String name){
 		EList<Block> listBlock = model.getBlocks();

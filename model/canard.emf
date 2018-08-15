@@ -17,10 +17,10 @@ class Topic {
   id attr int uniqueID;
 }
 
-@gmf.node(label="name",figure="rectangle", border.color="0,0,0")
+@gmf.node(label="name", figure="rectangle", border.color="0,0,0")
 class Flag {
   attr String name = "NAN";
-  
+
   @gmf.compartment
   val Flag[*] child;
   attr Boolnull type;
@@ -82,5 +82,9 @@ enum ValueType {
 class FlagToEBooleanMap : java.util.Map$Entry {
   attr String value;
   ref Flag key;
+}
+
+@gmf.node(label="name", figure="rounded", color="231,57,23")
+class BadTopic extends Topic {
 }
 

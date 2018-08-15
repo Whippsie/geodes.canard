@@ -105,6 +105,10 @@ public class CanardAdapterFactory extends AdapterFactoryImpl {
 				return createFlagToEBooleanMapAdapter();
 			}
 			@Override
+			public Adapter caseBadTopic(BadTopic object) {
+				return createBadTopicAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -247,6 +251,20 @@ public class CanardAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFlagToEBooleanMapAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link canard.BadTopic <em>Bad Topic</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see canard.BadTopic
+	 * @generated
+	 */
+	public Adapter createBadTopicAdapter() {
 		return null;
 	}
 

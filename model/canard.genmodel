@@ -65,5 +65,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute canard.ecore#//FlagToEBooleanMap/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference canard.ecore#//FlagToEBooleanMap/key"/>
     </genClasses>
+    <genClasses ecoreClass="canard.ecore#//BadTopic"/>
   </genPackages>
 </genmodel:GenModel>

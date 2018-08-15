@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_mVi9oJy6EeiiaPJi_9kY9Q" type="Ecore" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmi:id="_mVi9oJy6EeiiaPJi_9kY9Q" type="Ecore" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_mkcVQJy6EeiiaPJi_9kY9Q" type="2001" fontName="Segoe UI">
     <children xmi:type="notation:DecorationNode" xmi:id="_mkexgJy6EeiiaPJi_9kY9Q" type="5001"/>
     <children xmi:type="notation:BasicCompartment" xmi:id="_mkjC8Jy6EeiiaPJi_9kY9Q" type="7001">
@@ -275,6 +275,23 @@
     <element xmi:type="ecore:EClass" href="canard.ecore#//FlagToEBooleanMap"/>
     <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3nPoYZ7-Eei5l6Z8JOx3Vw" x="372" y="516" width="109" height="85"/>
   </children>
+  <children xmi:type="notation:Shape" xmi:id="_MwjpsKCaEeigLcvY8npOnQ" type="2001" fontName="Segoe UI">
+    <children xmi:type="notation:DecorationNode" xmi:id="_MwkQwaCaEeigLcvY8npOnQ" type="5001"/>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_MwkQwqCaEeigLcvY8npOnQ" type="7001">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_MwkQw6CaEeigLcvY8npOnQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_MwkQxKCaEeigLcvY8npOnQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_MwkQxaCaEeigLcvY8npOnQ" type="7002">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_MwkQxqCaEeigLcvY8npOnQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_MwkQx6CaEeigLcvY8npOnQ"/>
+    </children>
+    <children xmi:type="notation:BasicCompartment" xmi:id="_MwkQyKCaEeigLcvY8npOnQ" type="7003">
+      <styles xmi:type="notation:SortingStyle" xmi:id="_MwkQyaCaEeigLcvY8npOnQ"/>
+      <styles xmi:type="notation:FilteringStyle" xmi:id="_MwkQyqCaEeigLcvY8npOnQ"/>
+    </children>
+    <element xmi:type="ecore:EClass" href="canard.ecore#//BadTopic"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MwkQwKCaEeigLcvY8npOnQ" x="192" y="408" width="97" height="97"/>
+  </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_mVi9oZy6EeiiaPJi_9kY9Q"/>
   <element xmi:type="ecore:EPackage" href="canard.ecore#/"/>
   <edges xmi:type="notation:Connector" xmi:id="_mngQUJy6EeiiaPJi_9kY9Q" type="4003" source="_mkcVQJy6EeiiaPJi_9kY9Q" target="_mklfPJy6EeiiaPJi_9kY9Q">
@@ -424,5 +441,21 @@
     <styles xmi:type="notation:FontStyle" xmi:id="_qs6DcZ7_Eei5l6Z8JOx3Vw" fontName="Segoe UI"/>
     <element xmi:type="ecore:EReference" href="canard.ecore#//FlagToEBooleanMap/key"/>
     <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_qs6Dcp7_Eei5l6Z8JOx3Vw" points="[55, -32, -200, 105]$[186, -129, -69, 8]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_8Pww4KCZEeigLcvY8npOnQ" type="4003" source="_mkmtWpy6EeiiaPJi_9kY9Q" target="_3nPoYJ7-Eei5l6Z8JOx3Vw">
+    <children xmi:type="notation:DecorationNode" xmi:id="_8PxX8KCZEeigLcvY8npOnQ" type="6002">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_8Px_AKCZEeigLcvY8npOnQ" y="40"/>
+    </children>
+    <children xmi:type="notation:DecorationNode" xmi:id="_8Px_AaCZEeigLcvY8npOnQ" type="6004">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_8Px_AqCZEeigLcvY8npOnQ" y="60"/>
+    </children>
+    <styles xmi:type="notation:FontStyle" xmi:id="_8Pww4aCZEeigLcvY8npOnQ" fontName="Segoe UI"/>
+    <element xmi:type="ecore:EReference" href="canard.ecore#//Configuration/configflags"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_8Pww4qCZEeigLcvY8npOnQ" points="[0, 0, 0, 0]$[0, 0, 0, 0]"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_Pgk6QKCaEeigLcvY8npOnQ" type="4004" source="_MwjpsKCaEeigLcvY8npOnQ" target="_mkjqAJy6EeiiaPJi_9kY9Q">
+    <styles xmi:type="notation:FontStyle" xmi:id="_Pgk6QaCaEeigLcvY8npOnQ" fontName="Segoe UI"/>
+    <element xsi:nil="true"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Pgk6QqCaEeigLcvY8npOnQ" points="[4, -48, -1, 91]$[13, -180, 8, -41]"/>
   </edges>
 </notation:Diagram>

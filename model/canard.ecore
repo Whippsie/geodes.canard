@@ -114,4 +114,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//Flag"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BadTopic" eSuperTypes="#//Topic">
+    <eAnnotations source="gmf.node">
+      <details key="label" value="name"/>
+      <details key="figure" value="rounded"/>
+      <details key="color" value="231,57,23"/>
+    </eAnnotations>
+  </eClassifiers>
 </ecore:EPackage>

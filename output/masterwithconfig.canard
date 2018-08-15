@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ASCII"?>
-<canard:CanardModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:canard="http://iro.umontreal.ca/canard">
+<canard:CanardModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:canard="http://iro.umontreal.ca/canard">
   <links src="1" tgt="2"/>
   <links src="3" tgt="4"/>
   <links src="5" tgt="6"/>
@@ -26,15 +26,15 @@
   <links src="43" tgt="4"/>
   <blocks name="camera_node">
     <topics name="camera_info" uniqueID="2"/>
-    <topics name="image/compressed" uniqueID="4"/>
+    <topics xsi:type="canard:BadTopic" name="image/compressed" uniqueID="4"/>
   </blocks>
   <blocks name="cam_info_reader_node">
     <topics name="camera_info" uniqueID="1"/>
-    <topics name="compressed_image" uniqueID="3"/>
+    <topics xsi:type="canard:BadTopic" name="compressed_image" uniqueID="3"/>
   </blocks>
   <blocks name="inverse_kinematics_node">
     <topics name="wheels_cmd" uniqueID="5"/>
-    <topics name="car_cmd" uniqueID="7"/>
+    <topics xsi:type="canard:BadTopic" name="car_cmd" uniqueID="7"/>
     <topics name="actuator_params_received" uniqueID="9"/>
     <topics name="actuator_params" uniqueID="42"/>
   </blocks>
@@ -46,27 +46,27 @@
   <blocks name="joy_node"/>
   <blocks name="joy_mapper_node"/>
   <blocks name="fsm_node">
-    <topics name="mode" uniqueID="31"/>
-    <topics name="lane_pose_intersection_navigation" uniqueID="32"/>
+    <topics xsi:type="canard:BadTopic" name="mode" uniqueID="31"/>
+    <topics xsi:type="canard:BadTopic" name="lane_pose_intersection_navigation" uniqueID="32"/>
   </blocks>
   <blocks name="car_cmd_switch_node">
-    <topics name="cmd_lane_following" uniqueID="13"/>
-    <topics name="cmd" uniqueID="22"/>
+    <topics xsi:type="canard:BadTopic" name="cmd_lane_following" uniqueID="13"/>
+    <topics xsi:type="canard:BadTopic" name="cmd" uniqueID="22"/>
   </blocks>
   <blocks name="logic_gate_node"/>
   <blocks name="line_detector_node">
-    <topics name="image" uniqueID="15"/>
+    <topics xsi:type="canard:BadTopic" name="image" uniqueID="15"/>
     <topics name="transform" uniqueID="16"/>
   </blocks>
   <blocks name="ground_projection">
-    <topics name="lineseglist_out" uniqueID="19"/>
+    <topics xsi:type="canard:BadTopic" name="lineseglist_out" uniqueID="19"/>
   </blocks>
   <blocks name="duckiebot_visualizer">
-    <topics name="segment_list" uniqueID="18"/>
+    <topics xsi:type="canard:BadTopic" name="segment_list" uniqueID="18"/>
   </blocks>
   <blocks name="lane_filter_node">
-    <topics name="segment_list" uniqueID="20"/>
-    <topics name="car_cmd" uniqueID="21"/>
+    <topics xsi:type="canard:BadTopic" name="segment_list" uniqueID="20"/>
+    <topics xsi:type="canard:BadTopic" name="car_cmd" uniqueID="21"/>
     <topics name="lanewidth" uniqueID="24"/>
     <topics name="lane_pose" uniqueID="26"/>
     <topics name="lane_pose_obstacle_avoidance" uniqueID="34"/>
@@ -76,7 +76,7 @@
   <blocks name="stop_line_filter_node">
     <topics name="lanewidth" uniqueID="23"/>
     <topics name="lane_pose" uniqueID="25"/>
-    <topics name="segment_list" uniqueID="27"/>
+    <topics xsi:type="canard:BadTopic" name="segment_list" uniqueID="27"/>
   </blocks>
   <blocks name="lane_controller_node">
     <topics name="lane_pose" uniqueID="28"/>
@@ -90,7 +90,7 @@
   <blocks name="lane_pose_visualizer_node"/>
   <blocks name="led_emitter_node"/>
   <blocks name="anti_instagram_node">
-    <topics name="uncorrected_image" uniqueID="43"/>
+    <topics xsi:type="canard:BadTopic" name="uncorrected_image" uniqueID="43"/>
   </blocks>
   <flags name="Undefined" isAbstract="true">
     <child name="veh"/>
