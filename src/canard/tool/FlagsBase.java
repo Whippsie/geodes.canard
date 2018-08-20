@@ -50,14 +50,14 @@ public class FlagsBase {
 				if (catFlag == null){
 					//Category doesn't exist yet, must create it
 					catFlag = makeFlag(category, true);
-					CanardTool.model.getFlags().add(catFlag);
+					CanardHelper.model.getFlags().add(catFlag);
 				}
 				
 				//Create arg flag
 				Flag currFlag = makeFlag(flagname,false);
 				
 				//Add flags to the model
-				CanardTool.model.getFlags().add(currFlag);
+				CanardHelper.model.getFlags().add(currFlag);
 				
 				//Link category and flag
 				catFlag.getChild().add(currFlag);
@@ -77,14 +77,14 @@ public class FlagsBase {
 		if (catFlag == null){
 			//Category doesn't exist yet, must create it
 			catFlag = makeFlag(category,true);
-			CanardTool.model.getFlags().add(catFlag);
+			CanardHelper.model.getFlags().add(catFlag);
 		}
 		
 		//Create arg flag
 		Flag currFlag = makeFlag(flagname, false);
 		
 		//Add flags to the model
-		CanardTool.model.getFlags().add(currFlag);
+		CanardHelper.model.getFlags().add(currFlag);
 		
 		//Link category and flag
 		catFlag.getChild().add(currFlag);
@@ -92,7 +92,7 @@ public class FlagsBase {
 	}
 	
 	public static Flag getFlagByName(String flagName){
-		for (Flag f : CanardTool.model.getFlags()){
+		for (Flag f : CanardHelper.model.getFlags()){
 			if (f.getName().equals(flagName)){
 				return f;
 			}
@@ -172,7 +172,7 @@ public class FlagsBase {
 
 	}
 	private static Flag makeFlag(String flagName,boolean abstractVal){
-		Flag f1 = CanardTool.factory.createFlag();
+		Flag f1 = CanardHelper.factory.createFlag();
 		//String search = "name=\"";
 		//int posArg = line.indexOf(search) + search.length();
 		

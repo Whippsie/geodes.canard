@@ -1,6 +1,7 @@
 package canard.tool;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -24,95 +25,20 @@ import canard.Configuration;
 import canard.Flag;
 import canard.Rel;
 import canard.Topic;
-
 public class CanardTool {
-	public static final String INPUTLAUNCH = "input/master.launch";
-	public static final String OUTPUTFILE =  "output/masterwithconfig.canard";
+	public static final String INPUTLAUNCH = "input/demo.launch";
+	public static final String OUTPUTFILE =  "output/demolive.canard";
+	public static final String UILAUNCH = "input/Test.launch";
 	public static int uniqueID = 0;
-	public static CanardModel model;
-	public static CanardFactory factory;
-	
-	private static Block makeBlock(String name, CanardFactory factory){
-		//TODO: Not sure of this code, should use array or map to dynamically modify the name of the variables
+
+	private static Block makeBlock(String name){
 		//https://stackoverflow.com/questions/2711067/how-do-i-dynamically-name-objects-in-java
-		Block b1 = factory.createBlock();
+		Block b1 = CanardHelper.factory.createBlock();
 		b1.setName(name);
 		return b1;
 	}
-	private static String readFile(){
-		String text = "";
-		try {
-			//Reads the whole file
-			text = new String(Files.readAllBytes(Paths.get(INPUTLAUNCH)), "UTF-8");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return text;
-	}
-	/*
-	private static void getGroups(String text){
-		int posIncl = text.indexOf("<include");
-		int posGroup = text.indexOf("<group");
-		int posRemap = text.indexOf("<remap");
-		if (posIncl < posGroup || posRemap < posGroup){
-			String tempText = text.substring(0,posGroup);
-			exeInclude(tempText);
-			relationsFromLaunch(tempText);
-		}
-		String wordToFind = "group";
-		Pattern word = Pattern.compile(wordToFind);
-		Matcher match = word.matcher(text);
-		int cptGroup = 0 ;
-		int totalGroups = 0;
-		int debutGroupe = -1 ;
-		while (match.find()) {
-			if (debutGroupe == -1){
-				debutGroupe = match.start()-1;
-			}
-			if (text.charAt(match.start()-1) == '<'){
-				//On ouvre un groupe
-				cptGroup ++;
-				totalGroups ++;
-			}else{
-				//On ferme un groupe
-				cptGroup --;
-			}
-			if (cptGroup == 0){
-				//On ferme un groupe premier niveau
-				//On va gérer les noeuds dans le groupe via la position
-				int finGroupe = match.end()+1;
-				String groupText = text.substring(debutGroupe,finGroupe);
-				
-				//Doit verifier si l'argument est valide
-				int posArg = groupText.indexOf("arg");
-				posArg += 4; //$(arg camera)">
-				int posEndArg = groupText.indexOf(">");
-				String arg = groupText.substring(posArg,posEndArg-2); 
-				//TODO: Faire verification de l'argument ici
-				if (true){
-					String subgroupText = text.substring(debutGroupe+posEndArg,finGroupe-8);
-					if (totalGroups == 0){
-						return;
-					}else if (totalGroups == 1){
-						//Execute le include
-						exeInclude(subgroupText);
-						relationsFromLaunch(subgroupText);
-						debutGroupe = -1;
-						totalGroups = 0;
-					} else{
-						//Rappel recursivement la fonction
-						//Doit enlever le premier et dernier group
-						//debutGroupe = <, ajoute la longueur de la ligne
-						//finGroupe = >, soustrait la longueur de la ligne
-						getGroups(subgroupText);
-						totalGroups = 0;
-						debutGroupe = -1;
-					}
-				}
-			}
-		}
-	}
-	*/
+
+	
 	//http://www.java2s.com/Tutorial/Java/0040__Data-Type/Getstheminimumofthreeintvalues.htm
 	public static int minimum(int a, int b, int c) {
 	      if (b < a) {
@@ -135,6 +61,7 @@ public class CanardTool {
 			//On coupe le texte pour gérer les args seulement
 			String argText = text.substring(posArg,firstMin-1);
 			config = GenConfig.genConfigText(argText);
+			GenConfig.adaptConfig(canard.tool.FileReaderTool.readFile(UILAUNCH), config);
 		}
 		//Si on a des args avant tout autre élément
 		if (posArg < firstMin){
@@ -175,22 +102,13 @@ public class CanardTool {
 				//On va gérer les noeuds dans le groupe via la position
 				int finGroupe = match.end()+1;
 				String groupText = text.substring(debutGroupe,finGroupe);
-				//System.out.println("=========================== " );
-				//System.out.println("the supposingly groupText : " + groupText);
-				//System.out.println("=========================== " );
+
 				//Doit verifier si l'argument est valide
 				int posiArg = groupText.indexOf("arg");
 				posiArg += 4; //$(arg camera)">
 				int posEndArg = groupText.indexOf(">");
 				String arg = groupText.substring(posiArg,posEndArg-2);
-				/*
-				if (arg.equals("/camera/raw")){
-					System.out.println("=================================================================================");
-					System.out.println("the supposingly groupText : " + groupText);
-					System.out.println("=================================================================================");
-					System.out.println("the supposingly groupText : " + text);
-				}
-				*/
+
 				Flag f = FlagsBase.getFlagByName(arg);
 				EMap<Flag,String> mapping = config.getConfigflags();
 				
@@ -199,9 +117,6 @@ public class CanardTool {
 				String test = mapping.get(f);
 				if (mapping.get(f).equals("true")){
 					String subgroupText = text.substring(debutGroupe+posEndArg,finGroupe-8);
-					//System.out.println("=========================== " );
-					//System.out.println("before sending recursively : " + subgroupText);
-					//System.out.println("=========================== " );
 					//Si aucun groupe on a déjà exécuté les nodes et remap
 					if (totalGroups == 0){
 						return;
@@ -229,7 +144,7 @@ public class CanardTool {
 				while (match.find()) {
 					//Finds the end of the line
 				     int endInclude = text.indexOf('>',match.end());
-				     if (!checkComment(text,match.start())){
+				     if (!StringUtils.checkComment(text,match.start())){
 					     String temp = text.substring(match.start()+1, endInclude);
 					     
 					     //Reverse search from the end to get the node's name
@@ -245,22 +160,17 @@ public class CanardTool {
 					    	 System.out.println("on est in");
 					     }
 					     //nodes.add(node.replace(".launch", ""));
-					     if (getBlockFromName(node)==null){
+					     if (CanardHelper.getBlockFromName(node)==null){
 					    	 System.out.println("node : " +node);
-					    	 model.getBlocks().add(makeBlock(node,factory));
+					    	 CanardHelper.model.getBlocks().add(makeBlock(node));
 					     }
 						 
-						 //TODO : Doit appeler une autre fonction pour faire les config des flags
+
 				     }
 				}
 	}
 	
-	private static void nodesFromLaunch(){
-		String text = readFile();
-		getGroupsV2(text,null);
-		
-		
-	}
+
 	private static void incrementID(){
 		uniqueID+=1;
 	}
@@ -268,25 +178,25 @@ public class CanardTool {
 	//0 topic, 1 bad topic
 	private static Topic linkTopicToBlock(String line, int topicType){
 		String[] lineSplit = line.split("/");
-	    Block currBlock = getBlockFromName(lineSplit[0]);
+	    Block currBlock = CanardHelper.getBlockFromName(lineSplit[0]);
 	     
 	     //Pour gerer le cas ou un noeud pas include, mais remap
 	     if (currBlock == null && lineSplit[0].contains("node")){
-	    	 currBlock = makeBlock(lineSplit[0],factory);
+	    	 currBlock = makeBlock(lineSplit[0]);
 	     }
 	     
 	     Topic currTopic = null;
 	     //TODO : Else, On a un remap sans node, quoi faire?
 	     if (lineSplit.length != 1){
 	    	 //Ici peut vouloir concat au cas où on a /image/compressed, le topic est compressed ou image/compressed?
-	    	 String topicName = getTopicName(line);
-	    	 currTopic = getTopicFromName(topicName,currBlock);
+	    	 String topicName = CanardHelper.getTopicNameFromLine(line);
+	    	 currTopic = CanardHelper.getTopicFromName(topicName,currBlock);
 		     if (currTopic == null){
 		    	 
 		    	 if (topicType == 0){
-		    		 currTopic = factory.createTopic();
+		    		 currTopic = CanardHelper.factory.createTopic();
 		    	 }else{
-		    		 currTopic = factory.createBadTopic();
+		    		 currTopic = CanardHelper.factory.createBadTopic();
 		    	 }
 			     currTopic.setName(topicName);
 			     incrementID();
@@ -297,32 +207,9 @@ public class CanardTool {
 	     
 	     return currTopic;
 	}
-	private static String concat(String[] toConcat){
-		String result = "";
-		for (int i=1;i<toConcat.length;i++){
-			result += toConcat[i] + "/";
-		}
-		return result.substring(0,result.length()-1);
-	}
-	private static Topic getTopicFromName(String name, Block b){
-			for (Topic top : b.getTopics()){
-				if (top.getName().equals(name)){
-					return top;
-				}
-			}
-		return null;
-	}
-	private static boolean checkComment(String text, int pos){
-		String comment = "<!--";
-		String textval = "";
-		for (int i = comment.length() ; i > 0 ; i--){
-			textval += text.charAt(pos-i);
-		}
-		if(textval.contentEquals(comment)){
-			return true;
-		}
-		return false;
-	}
+
+
+
 	
 	private static void relationsFromLaunch(String text){
 			
@@ -337,7 +224,7 @@ public class CanardTool {
 		     int endInclude = text.indexOf('>',match.end());
 
 		     //Do not take the line into account if it's a comment
-			 if (!checkComment(text,match.start())){
+			 if (!StringUtils.checkComment(text,match.start())){
 			     String temp = text.substring(match.start()+1, endInclude);
 				 String from = "from=\"";
 				 String to = "to=\"";
@@ -351,8 +238,8 @@ public class CanardTool {
 			     to = temp.substring(toPos+4,endPos);
 			     to = to.replace("\"", "");
 			     
-			     String nametfrom = getTopicName(from);
-			     String nametto = getTopicName(to);
+			     String nametfrom = CanardHelper.getTopicNameFromLine(from);
+			     String nametto = CanardHelper.getTopicNameFromLine(to);
 			     
 			     Topic tfrom = null;
 			     Topic tto = null;
@@ -368,57 +255,31 @@ public class CanardTool {
 			     if (tfrom != null && tto != null){
 				     System.out.println("from : "+from);
 				     System.out.println(" to : " + to);
-				     Rel r1 = factory.createRel();
+				     Rel r1 = CanardHelper.factory.createRel();
 			    	 r1.setSrc(tfrom);
 				     r1.setTgt(tto);
-				     model.getLinks().add(r1);
+				     CanardHelper.model.getLinks().add(r1);
 			     }
 			 }
 
 		}
 		
 	}
-	private static String getTopicName(String line){
-		String[] nodeTopic = line.split("/");
-	     
-	     //TODO : decide what to do with the $
-	     for (int i =0; i<nodeTopic.length;i++){
-	    	 if (nodeTopic[i].contains("$")){
-	    		 return null;
-	    	 }
-	     }
-	     String val = "";
-	     if (nodeTopic.length > 2){
-	    	 return concat(nodeTopic);
-	     }else{
-	    	 return nodeTopic[1];
-	     }
-	}
-	private static Block getBlockFromName(String name){
-		EList<Block> listBlock = model.getBlocks();
-		for (Block b : listBlock){
-			if (b.getName().matches(name)){
-				return b;
-			}
-		}
-		return null;
-		
-	}
+
+
 	
 
 	public static void main(String[] args) throws IOException {
-		factory = CanardFactory.eINSTANCE;
-		model = factory.createCanardModel();
-		//FlagsBase.generateFlags(factory, model);
-		//Create blocks
-		nodesFromLaunch();
+		CanardHelper.initModel();
+		String text = FileReaderTool.readFile(INPUTLAUNCH);
+		getGroupsV2(text,null);
 
 
 		//Create relations
 		//relationsFromLaunch();
 		
 		//GenConfig.genConfig(model, factory);
-		XMIExporter.export(model, OUTPUTFILE);
+		XMIExporter.export(CanardHelper.model, OUTPUTFILE);
 
 
 		//URI diagUri = URI.createFileURI("output/out.canard");
@@ -435,10 +296,10 @@ public class CanardTool {
 		// Create a resource for this file.
 		//
 		Resource resource = resourceSet.createResource(fileURI);
-		resource.getContents().add(model);
+		resource.getContents().add(CanardHelper.model);
 		// Add the initial model object to the contents.
 		//
-		EObject rootObject = model;
+		EObject rootObject = CanardHelper.model;
 		/*
 	
 		if (rootObject != null) {
@@ -449,7 +310,7 @@ public class CanardTool {
 		//
 		/*
 		Diagram diagram = ViewService.createDiagram(rootObject,
-				CanardModelEditPart.MODEL_ID,
+				CanardCanardHelper.modelEditPart.MODEL_ID,
 				CanardDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 		if (diagram != null) {
 		  resource.getContents().add(diagram);
@@ -552,3 +413,67 @@ public class CanardTool {
 		}
 	}
 }	*/
+/*
+private static void getGroups(String text){
+	int posIncl = text.indexOf("<include");
+	int posGroup = text.indexOf("<group");
+	int posRemap = text.indexOf("<remap");
+	if (posIncl < posGroup || posRemap < posGroup){
+		String tempText = text.substring(0,posGroup);
+		exeInclude(tempText);
+		relationsFromLaunch(tempText);
+	}
+	String wordToFind = "group";
+	Pattern word = Pattern.compile(wordToFind);
+	Matcher match = word.matcher(text);
+	int cptGroup = 0 ;
+	int totalGroups = 0;
+	int debutGroupe = -1 ;
+	while (match.find()) {
+		if (debutGroupe == -1){
+			debutGroupe = match.start()-1;
+		}
+		if (text.charAt(match.start()-1) == '<'){
+			//On ouvre un groupe
+			cptGroup ++;
+			totalGroups ++;
+		}else{
+			//On ferme un groupe
+			cptGroup --;
+		}
+		if (cptGroup == 0){
+			//On ferme un groupe premier niveau
+			//On va gérer les noeuds dans le groupe via la position
+			int finGroupe = match.end()+1;
+			String groupText = text.substring(debutGroupe,finGroupe);
+			
+			//Doit verifier si l'argument est valide
+			int posArg = groupText.indexOf("arg");
+			posArg += 4; //$(arg camera)">
+			int posEndArg = groupText.indexOf(">");
+			String arg = groupText.substring(posArg,posEndArg-2); 
+			//TODO: Faire verification de l'argument ici
+			if (true){
+				String subgroupText = text.substring(debutGroupe+posEndArg,finGroupe-8);
+				if (totalGroups == 0){
+					return;
+				}else if (totalGroups == 1){
+					//Execute le include
+					exeInclude(subgroupText);
+					relationsFromLaunch(subgroupText);
+					debutGroupe = -1;
+					totalGroups = 0;
+				} else{
+					//Rappel recursivement la fonction
+					//Doit enlever le premier et dernier group
+					//debutGroupe = <, ajoute la longueur de la ligne
+					//finGroupe = >, soustrait la longueur de la ligne
+					getGroups(subgroupText);
+					totalGroups = 0;
+					debutGroupe = -1;
+				}
+			}
+		}
+	}
+}
+*/

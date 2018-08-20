@@ -12,57 +12,45 @@ import canard.Configuration;
 import canard.Flag;
 import canard.tool.FlagsBase;
 public class GenConfig {
-	public static final String INPUTCONFIG = "input/LocalizationModified.launch";
-	
-	public static void genConfig(){
-		Configuration testconfig = CanardTool.factory.createConfiguration();
-		EMap<Flag, String> flags = testconfig.getConfigflags();
-		BufferedReader reader;
-		try {
-			reader = new BufferedReader(new FileReader(
-					INPUTCONFIG));
-			String line = reader.readLine();
-			while (line != null) {
-				line = reader.readLine();
-				//Launch bug sans cette ligne
-				if (line != null){
-					String argName = FlagsBase.getArgInfo(line,"name=");
-					String argValue = FlagsBase.getArgInfo(line,"value=");
-					if (!argName.equals("")&& !argValue.equals("")){
-						Flag f = FlagsBase.getFlagByName(argName);
-						flags.put(f,argValue);
-					}
-				}
-			}
-			reader.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		testconfig.getConfigflags().addAll(flags);
-		CanardTool.model.getConfigurations().add(testconfig);
-	}
 	
 	public static Configuration genConfigText(String text){
-		Configuration testconfig = CanardTool.factory.createConfiguration();
-		EMap<Flag, String> flags = testconfig.getConfigflags();
-		String[] line = text.split("\n");
-		for (int i=0;i<line.length;i++){
-			String argName = FlagsBase.getArgInfo(line[i],"name=");
-			String argValue = FlagsBase.getArgInfo(line[i],"default=");
-			if (!argName.equals("")&& !argValue.equals("")){
+		Configuration config = CanardHelper.factory.createConfiguration();
+		adaptConfig(text, config);
+		CanardHelper.model.getConfigurations().add(config);
+		return config;
+	}
+	
+
+	public static void adaptConfig(String text, Configuration config){
+		String[] lines = splitLines(text);
+		EMap<Flag, String> flags = config.getConfigflags();
+		
+		//For every line
+		for (int i=0 ; i < lines.length ; i++){
+			String argName = FlagsBase.getArgInfo(lines[i],"name=");
+			String argValue = "";
+			if (lines[i].contains("value=")){
+				argValue = FlagsBase.getArgInfo(lines[i],"value=");
+			}else if(lines[i].contains("default=")){
+				argValue = FlagsBase.getArgInfo(lines[i],"default=");
+			}
+
+			//Both information fetched
+			if (!argName.equals("") && !argValue.equals("")){
+				
+				//Check if flag exists
 				Flag f = FlagsBase.getFlagByName(argName);
 				if (f == null){
-					FlagsBase.generateFlagsText(line[i]);
+					FlagsBase.generateFlagsText(lines[i]);
 					f = FlagsBase.getFlagByName(argName);
-					//model.getFlags().add(f);
 				}
 				flags.put(f,argValue);
 			}
-			testconfig.getConfigflags().addAll(flags);
+			config.getConfigflags().putAll(flags);
 
 		}
-		CanardTool.model.getConfigurations().add(testconfig);
-		
-		return testconfig;
+	}
+	public static String[] splitLines(String text){
+		return text.split("\n");
 	}
 }
